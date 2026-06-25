@@ -1,9 +1,9 @@
 /* ==========================================================================
-   MILKNEST PREMIUM FUNCTIONALITY SCRIPT
+   MILKNEST CLINICAL FOOD-TECH INTERACTIVE LOGIC
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ----------------------------------------------------------------------
     // 1. STATE & RESOURCE PRELOADING CONFIG
     // ----------------------------------------------------------------------
@@ -28,16 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const totalResources = totalFrames + staticAssets.length;
-    
-    // Status text mapping for high-tech preloader feedback
+
+    // Status text mapping for clinical preloader feedback
     const preloaderStates = [
-        { threshold: 10, text: "Booting core database..." },
-        { threshold: 25, text: "Preloading collection telemetry..." },
-        { threshold: 45, text: "Calibrating lab analysis frames..." },
-        { threshold: 65, text: "Configuring pasteurization model..." },
-        { threshold: 85, text: "Syncing packaging line graphics..." },
-        { threshold: 95, text: "Finalizing logistics map system..." },
-        { threshold: 100, text: "System ready. Launching." }
+        { threshold: 15, text: "Initializing telemetry circuits..." },
+        { threshold: 35, text: "Syncing collection silos data..." },
+        { threshold: 55, text: "Configuring laboratory testing profiles..." },
+        { threshold: 75, text: "Validating HTST pasteurization loops..." },
+        { threshold: 90, text: "Syncing packaging sterilization codes..." },
+        { threshold: 98, text: "Mapping active distribution cold chains..." },
+        { threshold: 100, text: "Milknest online. System launching." }
     ];
 
     // UI Elements for Preloader
@@ -79,21 +79,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function onResourceLoaded() {
         loadedResourcesCount++;
         const progress = (loadedResourcesCount / totalResources) * 100;
-        
+
         // Update preloader bar and percentage text
-        progressBarEl.style.width = `${progress}%`;
-        progressPercentEl.textContent = `${Math.round(progress)}%`;
+        if (progressBarEl) progressBarEl.style.width = `${progress}%`;
+        if (progressPercentEl) progressPercentEl.textContent = `${Math.round(progress)}%`;
 
         // Animate milk filling bottle SVG
-        // Bottle SVG height ranges from y=120 (empty) to y=15 (full)
-        const newY = 120 - (progress / 100) * 105;
-        milkLiquidEl.setAttribute('y', newY);
-        milkLiquidEl.setAttribute('height', 120 - newY);
-        milkWaveEl.setAttribute('d', `M 0 ${newY} Q 25 ${newY - 8}, 50 ${newY} T 100 ${newY} L 100 120 L 0 120 Z`);
+        if (milkLiquidEl && milkWaveEl) {
+            const newY = 120 - (progress / 100) * 105;
+            milkLiquidEl.setAttribute('y', newY);
+            milkLiquidEl.setAttribute('height', 120 - newY);
+            milkWaveEl.setAttribute('d', `M 0 ${newY} Q 25 ${newY - 8}, 50 ${newY} T 100 ${newY} L 100 120 L 0 120 Z`);
+        }
 
         // Update preloader status text
         const stateObj = preloaderStates.find(state => progress <= state.threshold);
-        if (stateObj) {
+        if (stateObj && statusTextEl) {
             statusTextEl.textContent = stateObj.text;
         }
 
@@ -103,16 +104,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function completePreloading() {
-        preloaderEl.classList.add('fade-out');
-        
+        if (preloaderEl) preloaderEl.classList.add('fade-out');
+
         // Draw the very first frame onto canvas immediately
         resizeCanvas();
         drawFrame(0);
-        
+
         // Start Intersection Observer reveals
         initScrollReveals();
         initStatsCounters();
-        
+
         // Enable page interactions
         document.body.style.overflowY = 'auto';
     }
@@ -122,7 +123,69 @@ document.addEventListener('DOMContentLoaded', () => {
     initPreloading();
 
     // ----------------------------------------------------------------------
-    // 3. CANVAS CONTROLLER & RESIZING (STICKY SEQUENCE)
+    // 3. MOUSE GLOW ORB (SMOOTH INTERPOLATED TRACKING)
+    // ----------------------------------------------------------------------
+    const glowOrb = document.getElementById('mouse-glow-orb');
+    let mouseX = 0, mouseY = 0;
+    let orbX = 0, orbY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Lerp (Linear Interpolation) loop for ultra-smooth orb tracking
+    function updateOrbPosition() {
+        const dx = mouseX - orbX;
+        const dy = mouseY - orbY;
+
+        // Speed ratio (0.08 offers smooth fluid delay)
+        orbX += dx * 0.08;
+        orbY += dy * 0.08;
+
+        if (glowOrb) {
+            glowOrb.style.left = `${orbX}px`;
+            glowOrb.style.top = `${orbY}px`;
+        }
+
+        requestAnimationFrame(updateOrbPosition);
+    }
+    requestAnimationFrame(updateOrbPosition);
+
+    // ----------------------------------------------------------------------
+    // 4. HERO SECTION 3D PARALLAX SHOWCASE
+    // ----------------------------------------------------------------------
+    const heroSection = document.getElementById('hero');
+    const parallaxWrapper = document.getElementById('hero-parallax-wrapper');
+    const parallaxImg = document.getElementById('hero-parallax-img');
+
+    if (heroSection && parallaxWrapper && parallaxImg) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+
+            // Normalize cursor position (-0.5 to 0.5)
+            const xVal = (e.clientX - rect.left) / rect.width - 0.5;
+            const yVal = (e.clientY - rect.top) / rect.height - 0.5;
+
+            // Calculate 3D tilt coordinates
+            const rotateX = -yVal * 25; // Max 12.5 deg tilt
+            const rotateY = xVal * 25;
+            const transX = xVal * 30;   // Max 15px translation
+            const transY = yVal * 30;
+
+            parallaxWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${transX}px, ${transY}px, 0)`;
+            parallaxImg.style.transform = `scale(1.03)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            // Reset to identity
+            parallaxWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+            parallaxImg.style.transform = 'scale(1)';
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 5. CANVAS CONTROLLER & RESIZING (STICKY SEQUENCE)
     // ----------------------------------------------------------------------
     function resizeCanvas() {
         if (!canvas) return;
@@ -135,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!images[index] || !images[index].complete) return;
         const img = images[index];
 
-        // Custom Object-Fit Cover formula for canvas drawing
+        // Object-Fit Cover formula for canvas drawing
         const canvasRatio = canvas.width / canvas.height;
         const imgRatio = img.width / img.height;
         let drawWidth, drawHeight, drawX, drawY;
@@ -159,21 +222,55 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeCanvas);
 
     // ----------------------------------------------------------------------
-    // 4. SCROLL INTERACTION & JOURNEY STEP ACTIONS
+    // 6. SCROLL INTERACTION & SCADA HUD SIGNAL CONTROLLER
     // ----------------------------------------------------------------------
     const journeySection = document.getElementById('journey');
-    const journeyStepCards = document.querySelectorAll('.journey-step-card');
     const stepperDots = document.querySelectorAll('.step-dot');
     const stepperProgress = document.getElementById('journey-stepper-progress');
 
-    // Milestones definition based on normalized scroll ratios
+    // SCADA HUD Elements
+    const hudFlowVal = document.getElementById('hud-flow');
+    const hudTempVal = document.getElementById('hud-temp');
+    const hudPurityVal = document.getElementById('hud-purity');
+    const hudPhVal = document.getElementById('hud-ph');
+
+    // Milestones definitions
     const stepThresholds = [
-        { step: 1, min: 0.0,  max: 0.20 },
+        { step: 1, min: 0.0, max: 0.20 },
         { step: 2, min: 0.20, max: 0.40 },
         { step: 3, min: 0.40, max: 0.60 },
         { step: 4, min: 0.60, max: 0.80 },
         { step: 5, min: 0.80, max: 1.00 }
     ];
+
+    // HUD Target values for each processing step
+    const hudTelemetryData = {
+        1: { temp: 4.1, flow: 15.2, purity: 99.2, ph: 6.60 },
+        2: { temp: 4.0, flow: 0.0, purity: 99.5, ph: 6.65 },
+        3: { temp: 72.2, flow: 22.4, purity: 99.8, ph: 6.62 },
+        4: { temp: 6.0, flow: 10.5, purity: 99.9, ph: 6.68 },
+        5: { temp: 4.2, flow: 35.8, purity: 99.9, ph: 6.67 }
+    };
+
+    function updateHudTelemetry(step, progressInRange) {
+        const data = hudTelemetryData[step];
+        if (!data) return;
+
+        // Add a micro random noise to make the dashboard look "alive" and processing
+        const noise = () => (Math.random() - 0.5) * 0.05;
+        const flowNoise = step === 2 ? 0 : (Math.random() - 0.5) * 0.2;
+
+        // Interpolate or apply variables
+        const finalTemp = (data.temp + noise()).toFixed(1);
+        const finalFlow = (data.flow + flowNoise).toFixed(1);
+        const finalPurity = (data.purity + (Math.random() * 0.02)).toFixed(2);
+        const finalPh = (data.ph + (noise() * 0.05)).toFixed(2);
+
+        if (hudFlowVal) hudFlowVal.textContent = `${finalFlow} L/s`;
+        if (hudTempVal) hudTempVal.textContent = `${finalTemp} °C`;
+        if (hudPurityVal) hudPurityVal.textContent = `${finalPurity} %`;
+        if (hudPhVal) hudPhVal.textContent = finalPh;
+    }
 
     function handleJourneyScroll() {
         if (!journeySection) return;
@@ -199,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stepperProgress.style.height = `${scrollRatio * 100}%`;
         }
 
-        // 3. Active step cards fade transitions based on scroll thresholds
+        // 3. Active step cards fade transitions & telemetry updates
         let activeStep = 1;
         stepThresholds.forEach(threshold => {
             const card = document.getElementById(`journey-step-${threshold.step}`);
@@ -209,6 +306,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeStep = threshold.step;
                 if (card) card.classList.add('active');
                 if (dot) dot.classList.add('active');
+
+                // Calculate local progress inside this specific step range
+                const rangeSpan = threshold.max - threshold.min;
+                const localProgress = (scrollRatio - threshold.min) / rangeSpan;
+                updateHudTelemetry(activeStep, localProgress);
             } else {
                 if (card) card.classList.remove('active');
                 if (dot) dot.classList.remove('active');
@@ -228,10 +330,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const sectionHeight = rect.height;
             const viewportHeight = window.innerHeight;
 
-            // Target scroll offset
             const targetRatio = (threshold.min + threshold.max) / 2;
             const targetScroll = sectionTop + targetRatio * (sectionHeight - viewportHeight);
-            
+
             window.scrollTo({
                 top: targetScroll,
                 behavior: 'smooth'
@@ -242,21 +343,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleJourneyScroll);
 
     // ----------------------------------------------------------------------
-    // 5. SHRUNKEN STICKY HEADER & NAV ACTIVE STATE (SCROLL SPY)
+    // 7. SHRUNKEN STICKY HEADER & NAV ACTIVE STATE (SCROLL SPY)
     // ----------------------------------------------------------------------
     const header = document.getElementById('main-header');
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
 
     function handleHeaderScroll() {
-        // Sticky shrink class trigger
         if (window.scrollY > 50) {
-            header.classList.add('shrink');
+            if (header) header.classList.add('shrink');
         } else {
-            header.classList.remove('shrink');
+            if (header) header.classList.remove('shrink');
         }
 
-        // Scroll Spy active nav linking
         let activeSectionId = "";
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 120;
@@ -276,9 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleHeaderScroll);
 
-    // ----------------------------------------------------------------------
-    // 6. MOBILE NAVIGATION DRAWER
-    // ----------------------------------------------------------------------
+    // Mobile nav
     const navToggle = document.getElementById('mobile-nav-toggle');
     const navMenu = document.getElementById('nav-menu');
 
@@ -288,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('open');
         });
 
-        // Close menu on clicking nav link
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navToggle.classList.remove('open');
@@ -298,22 +394,157 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 7. COUNTER ANIMATION FOR STATS CARDS
+    // 8. MASTER-DETAIL PRODUCT SWITCHER
+    // ----------------------------------------------------------------------
+    const masterCards = document.querySelectorAll('.product-master-card');
+    const showcaseContainer = document.querySelector('.showcase-card-inner');
+
+    // Showcase UI elements
+    const showcaseImg = document.getElementById('showcase-main-img');
+    const showcaseTag = document.getElementById('showcase-tag');
+    const showcaseTitle = document.getElementById('showcase-title');
+    const showcaseDesc = document.getElementById('showcase-desc');
+    const showcaseFat = document.getElementById('showcase-fat');
+    const showcaseSnf = document.getElementById('showcase-snf');
+    const showcaseShelf = document.getElementById('showcase-shelf');
+    const showcaseTemp = document.getElementById('showcase-temp');
+
+    function updateProductShowcase(card) {
+        if (!showcaseContainer || card.classList.contains('active')) return;
+
+        // Toggle active classes
+        masterCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+
+        // Add soft fade-out transition
+        showcaseContainer.classList.add('fade-out');
+
+        setTimeout(() => {
+            // Read parameters from data attributes
+            const name = card.getAttribute('data-product-name');
+            const tag = card.getAttribute('data-tag');
+            const imgPath = card.getAttribute('data-image');
+            const fat = card.getAttribute('data-fat');
+            const snf = card.getAttribute('data-snf');
+            const shelf = card.getAttribute('data-shelf');
+            const temp = card.getAttribute('data-temp');
+            const desc = card.getAttribute('data-desc');
+
+            // Set content in showcase
+            if (showcaseImg) {
+                showcaseImg.src = imgPath;
+                showcaseImg.alt = name;
+            }
+            if (showcaseTag) showcaseTag.textContent = tag;
+            if (showcaseTitle) showcaseTitle.textContent = name;
+            if (showcaseDesc) showcaseDesc.textContent = desc;
+            if (showcaseFat) showcaseFat.textContent = fat;
+            if (showcaseSnf) showcaseSnf.textContent = snf;
+            if (showcaseShelf) showcaseShelf.textContent = shelf;
+            if (showcaseTemp) showcaseTemp.textContent = temp;
+
+            // Remove fade-out class to slide/fade back in
+            showcaseContainer.classList.remove('fade-out');
+        }, 200);
+    }
+
+    masterCards.forEach(card => {
+        // Trigger on click
+        card.addEventListener('click', () => {
+            updateProductShowcase(card);
+        });
+
+        // Trigger on hover for premium seamless catalog interaction
+        card.addEventListener('mouseenter', () => {
+            updateProductShowcase(card);
+        });
+    });
+
+    // ----------------------------------------------------------------------
+    // 9. MAGNETIC CTA BUTTON CONTROLLER
+    // ----------------------------------------------------------------------
+    const magneticBtn = document.querySelector('.btn-magnetic');
+
+    if (magneticBtn) {
+        const mText = magneticBtn.querySelector('.magnetic-text');
+
+        magneticBtn.addEventListener('mousemove', (e) => {
+            const rect = magneticBtn.getBoundingClientRect();
+
+            // Cursor position relative to center of button
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            // Pull button border slightly (max 10px)
+            magneticBtn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+
+            // Pull interior text slightly further for 3D depth (max 20px)
+            if (mText) {
+                mText.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px)`;
+            }
+        });
+
+        magneticBtn.addEventListener('mouseleave', () => {
+            // Reset transforms with elastic transitions
+            magneticBtn.style.transform = 'translate(0px, 0px)';
+            if (mText) {
+                mText.style.transform = 'translate(0px, 0px)';
+            }
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 10. OPERATIONS GALLERY CATEGORY FILTER
+    // ----------------------------------------------------------------------
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Active Class Switch
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const categoryFilter = btn.getAttribute('data-filter');
+
+            galleryItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+
+                if (categoryFilter === 'all' || itemCategory === categoryFilter) {
+                    // Soft reveal
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    // Soft fade hide
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // ----------------------------------------------------------------------
+    // 11. COUNTER ANIMATION FOR STATS CARDS
     // ----------------------------------------------------------------------
     function animateCounter(element) {
         const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000; // 2 seconds
+        const duration = 2000;
         const startTime = performance.now();
 
         function updateNumber(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            
-            // Cubic ease-out formula
+
+            // Cubic ease-out
             const easeProgress = 1 - Math.pow(1 - progress, 3);
             const currentValue = Math.floor(easeProgress * target);
-            
-            // Format number (add commas if over 1000)
+
             element.textContent = currentValue.toLocaleString();
 
             if (progress < 1) {
@@ -334,17 +565,17 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !animated) {
                     counters.forEach(counter => animateCounter(counter));
-                    
-                    // Trigger stat fill lines
+
+                    // Trigger stat progress line fill animations
                     const fills = document.querySelectorAll('.stat-progress-fill');
                     fills.forEach(fill => {
-                        const targetWidth = fill.style.width;
+                        const targetWidth = fill.parentElement.parentElement.querySelector('.stat-progress-fill').style.width;
                         fill.style.width = '0%';
                         setTimeout(() => {
                             fill.style.width = targetWidth;
                         }, 100);
                     });
-                    
+
                     animated = true;
                     observer.unobserve(statsSection);
                 }
@@ -357,16 +588,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 8. INTERSECTION OBSERVER FOR SCROLL REVEALS
+    // 12. INTERSECTION OBSERVER FOR SCROLL REVEALS
     // ----------------------------------------------------------------------
     function initScrollReveals() {
         const revealElements = document.querySelectorAll('.scroll-reveal-up, .scroll-reveal-left, .scroll-reveal-right');
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target); // Reveal only once
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -375,9 +606,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 9. LIGHTBOX MODAL FOR GALLERY
+    // 13. LIGHTBOX MODAL FOR GALLERY
     // ----------------------------------------------------------------------
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItemContainers = document.querySelectorAll('.gallery-item');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-image');
     const lightboxCaption = document.getElementById('lightbox-caption-text');
@@ -388,37 +619,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openLightbox(index) {
         currentGalleryIndex = index;
-        const item = galleryItems[index];
+        const item = galleryItemContainers[index];
         const src = item.getAttribute('data-src');
         const caption = item.getAttribute('data-caption');
 
-        lightboxImg.src = src;
-        lightboxCaption.textContent = caption;
-        
-        lightbox.classList.add('show');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // Stop body scrolling
+        if (lightboxImg) lightboxImg.src = src;
+        if (lightboxCaption) lightboxCaption.textContent = caption;
+
+        if (lightbox) {
+            lightbox.classList.add('show');
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+        document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
-        lightbox.classList.remove('show');
-        lightbox.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = ''; // Resume body scrolling
+        if (lightbox) {
+            lightbox.classList.remove('show');
+            lightbox.setAttribute('aria-hidden', 'true');
+        }
+        document.body.style.overflow = '';
     }
 
     function showNextImage() {
         let nextIndex = currentGalleryIndex + 1;
-        if (nextIndex >= galleryItems.length) nextIndex = 0;
+        if (nextIndex >= galleryItemContainers.length) nextIndex = 0;
+
+        // Skip hidden filtered gallery items
+        while (galleryItemContainers[nextIndex] && galleryItemContainers[nextIndex].style.display === 'none') {
+            nextIndex++;
+            if (nextIndex >= galleryItemContainers.length) nextIndex = 0;
+            if (nextIndex === currentGalleryIndex) break;
+        }
         openLightbox(nextIndex);
     }
 
     function showPrevImage() {
         let prevIndex = currentGalleryIndex - 1;
-        if (prevIndex < 0) prevIndex = galleryItems.length - 1;
+        if (prevIndex < 0) prevIndex = galleryItemContainers.length - 1;
+
+        // Skip hidden filtered gallery items
+        while (galleryItemContainers[prevIndex] && galleryItemContainers[prevIndex].style.display === 'none') {
+            prevIndex--;
+            if (prevIndex < 0) prevIndex = galleryItemContainers.length - 1;
+            if (prevIndex === currentGalleryIndex) break;
+        }
         openLightbox(prevIndex);
     }
 
-    galleryItems.forEach((item, index) => {
+    galleryItemContainers.forEach((item, index) => {
         item.addEventListener('click', () => openLightbox(index));
     });
 
@@ -426,7 +675,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
     if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
 
-    // Close lightbox when clicking background overlay
     if (lightbox) {
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
@@ -435,17 +683,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Keyboard controls for lightbox
     document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('show')) return;
-        
+        if (!lightbox || !lightbox.classList.contains('show')) return;
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowRight') showNextImage();
         if (e.key === 'ArrowLeft') showPrevImage();
     });
 
     // ----------------------------------------------------------------------
-    // 10. CONTACT FORM HANDLING
+    // 14. CONTACT FORM HANDLING
     // ----------------------------------------------------------------------
     const contactForm = document.getElementById('milknest-contact-form');
     const formFeedback = document.getElementById('form-feedback');
@@ -457,33 +703,33 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('contact-form-submit-btn');
             const originalText = submitBtn.innerHTML;
 
-            // Simple loading state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = 'Sending Inquiry... <span class="spinner"></span>';
-            
-            // Clear prior feedback
-            formFeedback.style.display = 'none';
-            formFeedback.className = 'form-feedback';
+            submitBtn.innerHTML = 'Submitting Data... <span class="spinner"></span>';
 
-            // Simulate form submission API call
+            if (formFeedback) {
+                formFeedback.style.display = 'none';
+                formFeedback.className = 'form-feedback';
+            }
+
             setTimeout(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
-                
-                // Show success status
-                formFeedback.textContent = "Inquiry submitted successfully! Our partnership team will contact you shortly.";
-                formFeedback.classList.add('success');
+
+                if (formFeedback) {
+                    formFeedback.textContent = "Telemetry submitted successfully! Our partnership board will establish contact.";
+                    formFeedback.classList.add('success');
+                }
                 contactForm.reset();
             }, 1800);
         });
     }
 
     // ----------------------------------------------------------------------
-    // 11. BACK TO TOP BUTTON WITH PROGRESS CIRCLE
+    // 15. BACK TO TOP BUTTON WITH PROGRESS CIRCLE
     // ----------------------------------------------------------------------
     const backToTopBtn = document.getElementById('back-to-top');
     const progressFill = document.getElementById('back-to-top-progress');
-    const circleLength = 125.6; // 2 * PI * r (2 * 3.14 * 20)
+    const circleLength = 125.6;
 
     function handleBackToTop() {
         const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
@@ -491,17 +737,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (scrollTotal <= 0) return;
 
-        // Show button after scrolling 400px
         if (scrollPosition > 400) {
-            backToTopBtn.classList.add('show');
+            if (backToTopBtn) backToTopBtn.classList.add('show');
         } else {
-            backToTopBtn.classList.remove('show');
+            if (backToTopBtn) backToTopBtn.classList.remove('show');
         }
 
-        // Calculate progress percentage
         const progressPercent = Math.min(scrollPosition / scrollTotal, 1);
-        
-        // Update circular stroke offset
+
         if (progressFill) {
             const offset = circleLength - (progressPercent * circleLength);
             progressFill.style.strokeDashoffset = offset;
