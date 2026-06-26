@@ -243,6 +243,159 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ----------------------------------------------------------------------
+    // 4b. HERO FLAVOR SWITCHER SYSTEM
+    // ----------------------------------------------------------------------
+    const flavorSwitchBtns = document.querySelectorAll('.flavor-switch-btn');
+    const heroMetaBadgeText = document.getElementById('badge-text');
+    const heroMainTitle = document.getElementById('hero-main-title');
+    const heroSubtext = document.getElementById('hero-subtext');
+    const heroTelTemp = document.getElementById('hero-tel-temp');
+    const heroTelPurity = document.getElementById('hero-tel-purity');
+    const heroTelPh = document.getElementById('hero-tel-ph');
+
+    const flavorData = {
+        blue: {
+            themeClass: 'active-theme-blue',
+            badgeText: 'Classic Pure // 3.2% Fat',
+            titleHtml: 'Advanced Dairy <br><span class="accent-text">Processing &amp; Automation</span>',
+            subheadline: 'Classic pure standardized milk processed through state-of-the-art zero-contact pasteurization and SCADA automation.',
+            imgSrc: 'assets/images/milk-bottle-blue.png',
+            imgAlt: 'Milknest Classic Pure Milk',
+            temp: '4.0 °C',
+            purity: '99.9%',
+            ph: 'pH 6.64'
+        },
+        green: {
+            themeClass: 'active-theme-green',
+            badgeText: 'Probiotic Mint // 1.5% Fat',
+            titleHtml: 'Organic Probiotic <br><span class="accent-text">Pasture Milk</span>',
+            subheadline: 'Infused with organic bio-cultures and pasture nutrients to enhance gut health and support daily digestive immunity.',
+            imgSrc: 'assets/images/milk-bottle-green.png',
+            imgAlt: 'Milknest Probiotic Mint Milk',
+            temp: '4.2 °C',
+            purity: '99.8%',
+            ph: 'pH 6.70'
+        },
+        pink: {
+            themeClass: 'active-theme-pink',
+            badgeText: 'Berry Cream // 6.0% Fat',
+            titleHtml: 'Premium Rich <br><span class="accent-text">Organic Milk</span>',
+            subheadline: 'Directly sourced from grass-fed cows, offering high creaminess and natural proteins for rich dairy preparation.',
+            imgSrc: 'assets/images/milk-bottle-pink.png',
+            imgAlt: 'Milknest Berry Cream Milk',
+            temp: '3.8 °C',
+            purity: '99.9%',
+            ph: 'pH 6.58'
+        }
+    };
+
+    let activeFlavor = 'blue';
+
+    if (flavorSwitchBtns.length > 0 && heroSection) {
+        flavorSwitchBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const flavor = btn.getAttribute('data-flavor');
+                if (flavor === activeFlavor) return;
+
+                // Update active state
+                activeFlavor = flavor;
+                flavorSwitchBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const data = flavorData[flavor];
+                if (!data) return;
+
+                // 1. Transition Hero Theme Class
+                heroSection.className = `hero-section ${data.themeClass}`;
+
+                // 2. Animate Texts (Fade out, swap, fade in)
+                const textElements = [heroMetaBadgeText, heroMainTitle, heroSubtext];
+                gsap.to(textElements, {
+                    opacity: 0,
+                    y: -10,
+                    duration: 0.25,
+                    stagger: 0.05,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        if (heroMetaBadgeText) heroMetaBadgeText.textContent = data.badgeText;
+                        if (heroMainTitle) heroMainTitle.innerHTML = data.titleHtml;
+                        if (heroSubtext) heroSubtext.textContent = data.subheadline;
+
+                        gsap.to(textElements, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.45,
+                            stagger: 0.05,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+
+                // 3. Animate Telemetry Row
+                const telElements = [];
+                if (heroTelTemp) telElements.push(heroTelTemp);
+                if (heroTelPurity) telElements.push(heroTelPurity);
+                if (heroTelPh) telElements.push(heroTelPh);
+
+                if (telElements.length > 0) {
+                    gsap.to(telElements, {
+                        opacity: 0,
+                        scale: 0.9,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            if (heroTelTemp) heroTelTemp.textContent = data.temp;
+                            if (heroTelPurity) heroTelPurity.textContent = data.purity;
+                            if (heroTelPh) heroTelPh.textContent = data.ph;
+
+                            gsap.to(telElements, {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.4,
+                                stagger: 0.05,
+                                ease: "back.out(1.5)"
+                            });
+                        }
+                    });
+                }
+
+                // 4. Animate Bottle Stage backdrop
+                gsap.fromTo('.stage-backdrop-circle', 
+                    { scale: 0.75, opacity: 0.4 }, 
+                    { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.8)" }
+                );
+
+                // 5. Bottle Swap (Bounce slide transition)
+                if (parallaxImg) {
+                    gsap.to(parallaxImg, {
+                        opacity: 0,
+                        y: 40,
+                        scale: 0.9,
+                        rotate: -5,
+                        duration: 0.3,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            parallaxImg.src = data.imgSrc;
+                            parallaxImg.alt = data.imgAlt;
+                            // Reset image position for entrance
+                            gsap.set(parallaxImg, { y: -60, scale: 0.85, rotate: 5 });
+
+                            gsap.to(parallaxImg, {
+                                opacity: 1,
+                                y: 0,
+                                scale: 1,
+                                rotate: 0,
+                                duration: 0.8,
+                                ease: "elastic.out(1, 0.75)"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    }
+
     // Generic 3D Tilt helper for interactive cards
     function apply3DTilt(element, maxAngle = 15) {
         element.addEventListener('mousemove', (e) => {
@@ -820,9 +973,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (el.classList.contains('scroll-reveal-right')) xOffset = 60;
 
             gsap.fromTo(el,
-                { 
-                    opacity: 0, 
-                    x: xOffset, 
+                {
+                    opacity: 0,
+                    x: xOffset,
                     y: yOffset,
                     scale: 0.94,
                     filter: "blur(8px)"

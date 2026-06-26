@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Milknest - Next-Generation Dairy Processing & Automation. Utilizing advanced clinical telemetry, zero-contact pasteurization, and smart cold-chain systems.">
+    <meta name="description"
+        content="Milknest - Next-Generation Dairy Processing & Automation. Utilizing advanced clinical telemetry, zero-contact pasteurization, and smart cold-chain systems.">
     <title>Milknest | Advanced Dairy Processing & Distribution</title>
-    <!-- Google Fonts: Inter (Neutral Sans-Serif) & Share Tech Mono (SCADA Telemetry) -->
+    <!-- Google Fonts: Inter, Outfit (Rounded Headings) & Share Tech Mono (SCADA Telemetry) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- CUSTOM INTERACTIVE CURSOR -->
@@ -29,17 +32,21 @@
                 <svg class="preloader-svg" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <clipPath id="bottle-clip">
-                            <path d="M35 15 C35 10, 65 10, 65 15 L65 30 C65 35, 75 45, 75 55 L75 105 C75 112, 68 115, 50 115 C32 115, 25 112, 25 105 L25 55 C25 45, 35 35, 35 30 Z"/>
+                            <path
+                                d="M35 15 C35 10, 65 10, 65 15 L65 30 C65 35, 75 45, 75 55 L75 105 C75 112, 68 115, 50 115 C32 115, 25 112, 25 105 L25 55 C25 45, 35 35, 35 30 Z" />
                         </clipPath>
                         <linearGradient id="liquid-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stop-color="#0284C7" />
                             <stop offset="100%" stop-color="#2563EB" />
                         </linearGradient>
                     </defs>
-                    <path class="bottle-outline" d="M35 15 C35 10, 65 10, 65 15 L65 30 C65 35, 75 45, 75 55 L75 105 C75 112, 68 115, 50 115 C32 115, 25 112, 25 105 L25 55 C25 45, 35 35, 35 30 Z" fill="none" stroke="#E2E8F0" stroke-width="4"/>
+                    <path class="bottle-outline"
+                        d="M35 15 C35 10, 65 10, 65 15 L65 30 C65 35, 75 45, 75 55 L75 105 C75 112, 68 115, 50 115 C32 115, 25 112, 25 105 L25 55 C25 45, 35 35, 35 30 Z"
+                        fill="none" stroke="#E2E8F0" stroke-width="4" />
                     <g clip-path="url(#bottle-clip)">
-                        <rect class="milk-liquid" x="0" y="120" width="100" height="120" fill="url(#liquid-gradient)"/>
-                        <path class="milk-wave" d="M 0 120 Q 25 110, 50 120 T 100 120 L 100 120 L 0 120 Z" fill="#FFFFFF" opacity="0.4"/>
+                        <rect class="milk-liquid" x="0" y="120" width="100" height="120" fill="url(#liquid-gradient)" />
+                        <path class="milk-wave" d="M 0 120 Q 25 110, 50 120 T 100 120 L 100 120 L 0 120 Z"
+                            fill="#FFFFFF" opacity="0.4" />
                     </g>
                 </svg>
             </div>
@@ -61,9 +68,10 @@
     <header id="main-header" class="main-header">
         <div class="header-container">
             <a href="#hero" class="logo-link" id="nav-logo-link">
-                <img src="assets/images/milknest-updated-logo.png" alt="Milknest Logo" class="header-logo" id="header-logo-img">
+                <img src="assets/images/milknest-updated-logo.png" alt="Milknest Logo" class="header-logo"
+                    id="header-logo-img">
             </a>
-            
+
             <!-- Mobile Menu Toggle -->
             <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
                 <span class="bar"></span>
@@ -88,103 +96,135 @@
         </div>
     </header>
 
-    <!-- SECTION 1: HERO (Modernized Sci-Fi Industrial Tech layout) -->
-    <section id="hero" class="hero-section">
-        <div class="hero-bg-overlay">
-            <div class="gradient-overlay"></div>
-            <div class="tech-grid-overlay"></div>
+    <!-- SECTION 1: HERO (Interactive Flavor & Purity Showroom) -->
+    <section id="hero" class="hero-section active-theme-blue">
+        <!-- Watercolor Dynamic Sky & Clouds -->
+        <div class="hero-watercolor-bg">
+            <div class="watercolor-blob blob-1"></div>
+            <div class="watercolor-blob blob-2"></div>
+            <div class="watercolor-blob blob-3"></div>
+            <div class="drifting-clouds">
+                <div class="cloud cloud-1"></div>
+                <div class="cloud cloud-2"></div>
+            </div>
+            <div class="grid-overlay"></div>
         </div>
 
         <div class="hero-content-wrapper">
             <div class="hero-grid-split">
                 
-                <!-- Glassmorphic System Control Console -->
-                <div class="hero-tech-console scroll-reveal-left">
-                    <div class="console-header">
-                        <span class="console-dot red"></span>
-                        <span class="console-dot yellow"></span>
-                        <span class="console-dot green"></span>
-                        <span class="console-title">// SYSTEM_CONTROL_ROOM // TELEMETRY_ACTIVE</span>
-                    </div>
-                    <div class="console-body">
+                <!-- Refined Light Glassmorphic Info Column -->
+                <div class="hero-info-col scroll-reveal-left">
+                    <div class="hero-badge-wrapper">
                         <div class="hero-badge" id="hero-meta-badge">
                             <span class="badge-dot"></span>
-                            Automated Food-Tech System Active
+                            <span id="badge-text">Classic Pure // 3.2% Fat</span>
                         </div>
-                        <h1 class="hero-title" id="hero-main-title">
-                            Advanced Dairy Processing &amp; Distribution
-                        </h1>
-                        <p class="hero-subheadline" id="hero-subtext">
-                            Transforming farm-fresh milk into premium dairy products through modern SCADA automation, zero-contact pasteurization, and rapid cold-chain logistics.
-                        </p>
-                        <div class="hero-actions" id="hero-button-group">
-                            <a href="#journey" class="btn btn-primary btn-lg" id="btn-explore-journey">Explore Journey</a>
-                            <a href="#contact" class="btn btn-outline btn-lg" id="btn-partner-inquire">Inquire Partnerships</a>
+                    </div>
+                    <h1 class="hero-title" id="hero-main-title">
+                        Advanced Dairy <br><span class="accent-text">Processing &amp; Automation</span>
+                    </h1>
+                    <p class="hero-subheadline" id="hero-subtext">
+                        Classic pure standardized milk processed through state-of-the-art zero-contact pasteurization and SCADA automation.
+                    </p>
+                    <div class="hero-actions" id="hero-button-group">
+                        <a href="#journey" class="btn btn-theme btn-lg" id="btn-explore-journey">
+                            <span>Explore Journey</span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="#contact" class="btn btn-outline-theme btn-lg" id="btn-partner-inquire">Inquire Partnerships</a>
+                    </div>
+
+                    <!-- Telemetry Data Display -->
+                    <div class="hero-telemetry-row">
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">TEMPERATURE</span>
+                            <span class="telemetry-value" id="hero-tel-temp">4.0 °C</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">PURITY RATE</span>
+                            <span class="telemetry-value" id="hero-tel-purity">99.9%</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">ACIDITY INDEX</span>
+                            <span class="telemetry-value" id="hero-tel-ph">pH 6.64</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Parallax Holographic Capsule Showcase -->
+                <!-- Interactive Parallax Showcase & Flavor Switcher -->
                 <div class="hero-visual-col scroll-reveal-right" id="hero-visual-col-box">
-                    <div class="visual-container-outer">
-                        <!-- Holographic vertical scanning laser beam -->
-                        <div class="capsule-scanner-beam"></div>
-
-                        <!-- Holographic concentric rotating base grid -->
-                        <div class="holo-base-platform"></div>
-
-                        <!-- Holographic Concentric Rings -->
-                        <div class="holo-ring holo-ring-1"></div>
-                        <div class="holo-ring holo-ring-2"></div>
-                        <div class="holo-ring holo-ring-3"></div>
-
-                        <!-- Technical Corner Ticks -->
-                        <div class="tech-corner top-left"></div>
-                        <div class="tech-corner top-right"></div>
-                        <div class="tech-corner bottom-left"></div>
-                        <div class="tech-corner bottom-right"></div>
-
-                        <!-- Diagnostic telemetry grid overlay -->
-                        <div class="holo-grid-back"></div>
-
-                        <!-- Technical HUD readout -->
-                        <div class="floating-tech-hud">
-                            <span>UNIT STATUS: ONLINE</span>
-                            <span>BIOSAFETY: STABLE</span>
-                            <span class="hud-val">TEMP: 4.0 °C</span>
+                    <div class="showroom-container">
+                        
+                        <!-- Floating HUD diagnostic readouts -->
+                        <div class="floating-hud-badge top-left">
+                            <span class="hud-label">STATUS</span>
+                            <span class="hud-status-val pulse-text">ONLINE</span>
+                        </div>
+                        <div class="floating-hud-badge bottom-right">
+                            <span class="hud-label">BATCH</span>
+                            <span class="hud-status-val">#MN-2026</span>
                         </div>
 
-                        <!-- Live Diagnostic Chart Overlay -->
-                        <div class="holo-chart-box">
-                            <span class="chart-label">FLOW DIAGNOSTICS</span>
-                            <svg class="holo-mini-chart" viewBox="0 0 100 40">
-                                <path d="M 0 30 Q 15 10, 30 25 T 60 15 T 90 20 L 100 10" fill="none" stroke="var(--color-secondary)" stroke-width="1.5" class="holo-chart-line"></path>
+                        <!-- Main 3D Bottle Display -->
+                        <div class="bottle-stage-wrapper" id="hero-parallax-wrapper">
+                            <!-- Background Accent Shape -->
+                            <div class="stage-backdrop-circle"></div>
+                            
+                            <!-- Liquid Splash Graphics (SVG) -->
+                            <svg class="stage-splash-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <path class="splash-path" d="M150,280 C220,280 280,220 280,150 C280,90 220,60 170,80 C120,100 80,40 50,100 C20,160 80,280 150,280 Z" fill="rgba(255, 255, 255, 0.6)"/>
                             </svg>
+                            
+                            <!-- Bottle Image -->
+                            <img src="assets/images/milk-bottle-blue.png" alt="Milknest Classic Pure Milk" class="hero-product-img" id="hero-parallax-img">
+                            
+                            <!-- Diagnostic Scan Beam -->
+                            <div class="stage-scan-beam"></div>
                         </div>
 
-                        <!-- Floating Holographic Markers -->
-                        <div class="holo-marker marker-1">pH: 6.64 // OPTIMAL</div>
-                        <div class="holo-marker marker-2">TEMP: 4.0°C // STABLE</div>
-                        <div class="holo-marker marker-3">FLOW: 24.5 L/S</div>
-
-                        <!-- 3D Parallax image parent -->
-                        <div class="parallax-product-wrapper" id="hero-parallax-wrapper">
-                            <img src="assets/images/product-image.png" alt="Milknest Premium Dairy Visual" class="hero-product-img" id="hero-parallax-img">
-                            <div class="visual-radial-glow"></div>
+                        <!-- Flavor Color Selection Thumbnails (Variant Switcher) -->
+                        <div class="flavor-switcher-dock">
+                            <button class="flavor-switch-btn active" data-flavor="blue" aria-label="Classic Pure Variant">
+                                <div class="btn-thumb-circle blue">
+                                    <img src="assets/images/milk-bottle-blue.png" alt="Classic Pure">
+                                </div>
+                                <span class="flavor-name">Classic</span>
+                            </button>
+                            <button class="flavor-switch-btn" data-flavor="green" aria-label="Probiotic Mint Variant">
+                                <div class="btn-thumb-circle green">
+                                    <img src="assets/images/milk-bottle-green.png" alt="Probiotic Mint">
+                                </div>
+                                <span class="flavor-name">Minty</span>
+                            </button>
+                            <button class="flavor-switch-btn" data-flavor="pink" aria-label="Berry Cream Variant">
+                                <div class="btn-thumb-circle pink">
+                                    <img src="assets/images/milk-bottle-pink.png" alt="Berry Cream">
+                                </div>
+                                <span class="flavor-name">Berry</span>
+                            </button>
                         </div>
+
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <a href="#journey" class="hero-scroll-indicator" id="hero-scroll-btn" aria-label="Scroll Down">
-            <span class="scroll-label">Scroll to Journey</span>
-            <div class="mouse-icon">
-                <span class="mouse-wheel"></span>
-            </div>
-        </a>
+        <!-- Floating Milk Splash Waves (Bottom Divider) -->
+        <div class="hero-liquid-divider">
+            <svg class="divider-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s58 18 88 18 58-18 88-18 58 18 88 18v44h-352z" />
+                </defs>
+                <g class="wave-parallax">
+                    <use href="#gentle-wave" x="48" y="0" fill="rgba(248, 250, 252, 0.4)" />
+                    <use href="#gentle-wave" x="48" y="3" fill="rgba(248, 250, 252, 0.7)" />
+                    <use href="#gentle-wave" x="48" y="5" fill="rgba(248, 250, 252, 0.9)" />
+                    <use href="#gentle-wave" x="48" y="7" fill="#F8FAFC" />
+                </g>
+            </svg>
+        </div>
     </section>
 
     <!-- SECTION 2: MILK JOURNEY SCROLL EXPERIENCE (Background: Off-white) -->
@@ -249,7 +289,9 @@
             <!-- Milestone Text Overlay -->
             <div class="journey-text-container">
                 <div class="journey-stepper" id="journey-stepper-indicator">
-                    <div class="stepper-line"><div class="stepper-progress" id="journey-stepper-progress"></div></div>
+                    <div class="stepper-line">
+                        <div class="stepper-progress" id="journey-stepper-progress"></div>
+                    </div>
                     <div class="step-dot active" data-step="1"><span class="step-dot-label">Collection</span></div>
                     <div class="step-dot" data-step="2"><span class="step-dot-label">Testing</span></div>
                     <div class="step-dot" data-step="3"><span class="step-dot-label">Pasteurization</span></div>
@@ -263,50 +305,65 @@
                     <div class="journey-step-card active" id="journey-step-1" data-frame-start="0" data-frame-end="48">
                         <div class="step-tag">Step 01</div>
                         <h3 class="step-title">Milk Collection</h3>
-                        <p class="step-description">Farm-fresh milk is gathered daily under computer-controlled thermal logging to preserve nutritional density.</p>
+                        <p class="step-description">Farm-fresh milk is gathered daily under computer-controlled thermal
+                            logging to preserve nutritional density.</p>
                         <div class="step-spec-grid">
-                            <div class="step-spec-item"><span class="spec-label">Source Temp</span><span class="spec-val">4°C &plusmn; 0.5°C</span></div>
-                            <div class="step-spec-item"><span class="spec-label">Logistics</span><span class="spec-val">Insulated Tankers</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Source Temp</span><span
+                                    class="spec-val">4°C &plusmn; 0.5°C</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Logistics</span><span
+                                    class="spec-val">Insulated Tankers</span></div>
                         </div>
                     </div>
                     <!-- Step 02 -->
                     <div class="journey-step-card" id="journey-step-2" data-frame-start="48" data-frame-end="96">
                         <div class="step-tag">Step 02</div>
                         <h3 class="step-title">Quality Testing</h3>
-                        <p class="step-description">Incoming supplies undergo immediate lab screening of 50+ bio-markers before storage in isolated silos.</p>
+                        <p class="step-description">Incoming supplies undergo immediate lab screening of 50+ bio-markers
+                            before storage in isolated silos.</p>
                         <div class="step-spec-grid">
-                            <div class="step-spec-item"><span class="spec-label">Test Parameters</span><span class="spec-val">50+ Bio-Markers</span></div>
-                            <div class="step-spec-item"><span class="spec-label">Speed</span><span class="spec-val">Real-time Analysis</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Test Parameters</span><span
+                                    class="spec-val">50+ Bio-Markers</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Speed</span><span
+                                    class="spec-val">Real-time Analysis</span></div>
                         </div>
                     </div>
                     <!-- Step 03 -->
                     <div class="journey-step-card" id="journey-step-3" data-frame-start="96" data-frame-end="144">
                         <div class="step-tag">Step 03</div>
                         <h3 class="step-title">Pasteurization</h3>
-                        <p class="step-description">Milk is heated under high-temperature short-time (HTST) parameters and homogenized to ensure absolute safety.</p>
+                        <p class="step-description">Milk is heated under high-temperature short-time (HTST) parameters
+                            and homogenized to ensure absolute safety.</p>
                         <div class="step-spec-grid">
-                            <div class="step-spec-item"><span class="spec-label">HTST Formula</span><span class="spec-val">72°C for 15s</span></div>
-                            <div class="step-spec-item"><span class="spec-label">Homogenizer</span><span class="spec-val">2-Stage, 250 Bar</span></div>
+                            <div class="step-spec-item"><span class="spec-label">HTST Formula</span><span
+                                    class="spec-val">72°C for 15s</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Homogenizer</span><span
+                                    class="spec-val">2-Stage, 250 Bar</span></div>
                         </div>
                     </div>
                     <!-- Step 04 -->
                     <div class="journey-step-card" id="journey-step-4" data-frame-start="144" data-frame-end="192">
                         <div class="step-tag">Step 04</div>
                         <h3 class="step-title">Packaging</h3>
-                        <p class="step-description">Aseptic filling lines operate inside pressurized cleanrooms to seal products with zero manual contact.</p>
+                        <p class="step-description">Aseptic filling lines operate inside pressurized cleanrooms to seal
+                            products with zero manual contact.</p>
                         <div class="step-spec-grid">
-                            <div class="step-spec-item"><span class="spec-label">Human Contact</span><span class="spec-val">Zero (Fully Sealed)</span></div>
-                            <div class="step-spec-item"><span class="spec-label">Environment</span><span class="spec-val">HEPA Class 100</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Human Contact</span><span
+                                    class="spec-val">Zero (Fully Sealed)</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Environment</span><span
+                                    class="spec-val">HEPA Class 100</span></div>
                         </div>
                     </div>
                     <!-- Step 05 -->
                     <div class="journey-step-card" id="journey-step-5" data-frame-start="192" data-frame-end="240">
                         <div class="step-tag">Step 05</div>
                         <h3 class="step-title">Distribution</h3>
-                        <p class="step-description">Finished goods are dispatched via our GPS-monitored refrigerated network, preserving the cold chain.</p>
+                        <p class="step-description">Finished goods are dispatched via our GPS-monitored refrigerated
+                            network, preserving the cold chain.</p>
                         <div class="step-spec-grid">
-                            <div class="step-spec-item"><span class="spec-label">Cold Storage</span><span class="spec-val">2°C to 4°C</span></div>
-                            <div class="step-spec-item"><span class="spec-label">Tracking</span><span class="spec-val">Real-time GPS / Temp</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Cold Storage</span><span
+                                    class="spec-val">2°C to 4°C</span></div>
+                            <div class="step-spec-item"><span class="spec-label">Tracking</span><span
+                                    class="spec-val">Real-time GPS / Temp</span></div>
                         </div>
                     </div>
                 </div>
@@ -318,32 +375,42 @@
     <section id="about" class="about-section section-padding">
         <div class="section-container">
             <div class="about-grid">
-                
+
                 <!-- Left Content Column -->
                 <div class="about-content scroll-reveal-left" id="about-info-col">
                     <span class="section-badge">About Milknest</span>
                     <h2 class="section-title text-slate">Trust Through Automated Quality</h2>
                     <p class="about-desc">
-                        Milknest operates a next-generation dairy processing facility. By integrating automated SCADA controls and advanced thermodynamics, we guarantee that every drop of milk preserves its natural nutritional goodness from collection point to delivery.
+                        Milknest operates a next-generation dairy processing facility. By integrating automated SCADA
+                        controls and advanced thermodynamics, we guarantee that every drop of milk preserves its natural
+                        nutritional goodness from collection point to delivery.
                     </p>
-                    
+
                     <div class="about-values">
                         <div class="value-item">
                             <div class="value-icon-wrapper">
-                                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
                             </div>
                             <div>
                                 <h4 class="value-title">Smart SCADA Control</h4>
-                                <p class="value-text">Minimal manual handling prevents contamination and ensures highly consistent milk parameters.</p>
+                                <p class="value-text">Minimal manual handling prevents contamination and ensures highly
+                                    consistent milk parameters.</p>
                             </div>
                         </div>
                         <div class="value-item">
                             <div class="value-icon-wrapper">
-                                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5 .5A9 9 0 1 1 11.26 3m8.66 4.74A9 9 0 0 0 12 4.12"/></svg>
+                                <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 12l2 2 4-4m5 .5A9 9 0 1 1 11.26 3m8.66 4.74A9 9 0 0 0 12 4.12" />
+                                </svg>
                             </div>
                             <div>
                                 <h4 class="value-title">Certified Food Biosafety</h4>
-                                <p class="value-text">Operating strict cleanroom protocols that fully satisfy international manufacturing standards.</p>
+                                <p class="value-text">Operating strict cleanroom protocols that fully satisfy
+                                    international manufacturing standards.</p>
                             </div>
                         </div>
                     </div>
@@ -354,33 +421,43 @@
                         <div class="about-certs-flex">
                             <div class="about-cert-seal-item">
                                 <svg class="seal-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="3,3"/>
-                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-                                    <path d="M35 50 L45 60 L65 40" fill="none" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2"
+                                        stroke-dasharray="3,3" />
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5" />
+                                    <path d="M35 50 L45 60 L65 40" fill="none" stroke="#2563EB" stroke-width="3.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span>ISO 22000:2018</span>
                             </div>
                             <div class="about-cert-seal-item">
                                 <svg class="seal-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="3,3"/>
-                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" transform="translate(38, 38) scale(0.65)" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2"
+                                        stroke-dasharray="3,3" />
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5" />
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                                        transform="translate(38, 38) scale(0.65)" fill="none" stroke="#2563EB"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span>HACCP Certified</span>
                             </div>
                             <div class="about-cert-seal-item">
                                 <svg class="seal-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="3,3"/>
-                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" transform="translate(38, 38) scale(0.65)" fill="none" stroke="#2563EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2"
+                                        stroke-dasharray="3,3" />
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5" />
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"
+                                        transform="translate(38, 38) scale(0.65)" fill="none" stroke="#2563EB"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span>FSSAI Compliant</span>
                             </div>
                             <div class="about-cert-seal-item">
                                 <svg class="seal-svg" viewBox="0 0 100 100">
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="3,3"/>
-                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5"/>
-                                    <path d="M50 22 L75 35 L75 65 L50 78 L25 65 L25 35 Z" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#2563EB" stroke-width="2"
+                                        stroke-dasharray="3,3" />
+                                    <circle cx="50" cy="50" r="38" fill="none" stroke="#2563EB" stroke-width="1.5" />
+                                    <path d="M50 22 L75 35 L75 65 L50 78 L25 65 L25 35 Z" fill="none" stroke="#2563EB"
+                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span>GMP Audited</span>
                             </div>
@@ -395,46 +472,73 @@
                             <!-- Card 01 -->
                             <div class="stat-card">
                                 <div class="stat-icon-wrapper">
-                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                    </svg>
                                 </div>
                                 <div class="stat-number-wrapper">
-                                    <span class="stat-number" data-target="25000">0</span><span class="stat-suffix">+</span>
+                                    <span class="stat-number" data-target="25000">0</span><span
+                                        class="stat-suffix">+</span>
                                 </div>
                                 <h3 class="stat-label">Liters Daily</h3>
-                                <div class="stat-progress-bar"><div class="stat-progress-fill" style="width: 85%;"></div></div>
+                                <div class="stat-progress-bar">
+                                    <div class="stat-progress-fill" style="width: 85%;"></div>
+                                </div>
                             </div>
                             <!-- Card 02 -->
                             <div class="stat-card">
                                 <div class="stat-icon-wrapper">
-                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
                                 </div>
                                 <div class="stat-number-wrapper">
-                                    <span class="stat-number" data-target="100">0</span><span class="stat-suffix">+</span>
+                                    <span class="stat-number" data-target="100">0</span><span
+                                        class="stat-suffix">+</span>
                                 </div>
                                 <h3 class="stat-label">Specialists</h3>
-                                <div class="stat-progress-bar"><div class="stat-progress-fill" style="width: 70%;"></div></div>
+                                <div class="stat-progress-bar">
+                                    <div class="stat-progress-fill" style="width: 70%;"></div>
+                                </div>
                             </div>
                             <!-- Card 03 -->
                             <div class="stat-card">
                                 <div class="stat-icon-wrapper">
-                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <path d="M2 12h20" />
+                                    </svg>
                                 </div>
                                 <div class="stat-number-wrapper">
-                                    <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
+                                    <span class="stat-number" data-target="15">0</span><span
+                                        class="stat-suffix">+</span>
                                 </div>
                                 <h3 class="stat-label">Regions</h3>
-                                <div class="stat-progress-bar"><div class="stat-progress-fill" style="width: 90%;"></div></div>
+                                <div class="stat-progress-bar">
+                                    <div class="stat-progress-fill" style="width: 90%;"></div>
+                                </div>
                             </div>
                             <!-- Card 04 -->
                             <div class="stat-card">
                                 <div class="stat-icon-wrapper">
-                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                        <path d="M22 4L12 14.01l-3-3" />
+                                    </svg>
                                 </div>
                                 <div class="stat-number-wrapper">
-                                    <span class="stat-number" data-target="99">0</span><span class="stat-suffix">%</span>
+                                    <span class="stat-number" data-target="99">0</span><span
+                                        class="stat-suffix">%</span>
                                 </div>
                                 <h3 class="stat-label">Compliance</h3>
-                                <div class="stat-progress-bar"><div class="stat-progress-fill" style="width: 99%;"></div></div>
+                                <div class="stat-progress-bar">
+                                    <div class="stat-progress-fill" style="width: 99%;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -451,7 +555,8 @@
                 <span class="section-badge">Operations &amp; Tech</span>
                 <h2 class="section-title text-center">Industrial Infrastructure &amp; Capabilities</h2>
                 <p class="section-subtitle text-center">
-                    A look into our high-capacity facility divisions built to ensure reliable institutional supplies and safety control.
+                    A look into our high-capacity facility divisions built to ensure reliable institutional supplies and
+                    safety control.
                 </p>
             </div>
 
@@ -461,48 +566,60 @@
                 <div class="facility-card scroll-reveal-up" id="fac-card-1">
                     <span class="fac-number">01</span>
                     <div class="facility-icon-wrapper">
-                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 7.5L12 2.5 2 7.5v9l10 5 10-5v-9z M12 22V12 M2 7.5l10 5 10-5"/>
+                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 7.5L12 2.5 2 7.5v9l10 5 10-5v-9z M12 22V12 M2 7.5l10 5 10-5" />
                         </svg>
                     </div>
                     <h3 class="facility-card-title">Processing Plant</h3>
-                    <p class="facility-card-desc">Advanced pasteurizers and homogenizers monitored via real-time SCADA telemetry for absolute parameter control.</p>
+                    <p class="facility-card-desc">Advanced pasteurizers and homogenizers monitored via real-time SCADA
+                        telemetry for absolute parameter control.</p>
                 </div>
-                
+
                 <!-- Card 2 -->
                 <div class="facility-card scroll-reveal-up" id="fac-card-2">
                     <span class="fac-number">02</span>
                     <div class="facility-icon-wrapper">
-                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                         </svg>
                     </div>
                     <h3 class="facility-card-title">Quality Laboratory</h3>
-                    <p class="facility-card-desc">Equipped to analyze 50+ chemical and biological indicators, verifying purity levels prior to plant dispatch.</p>
+                    <p class="facility-card-desc">Equipped to analyze 50+ chemical and biological indicators, verifying
+                        purity levels prior to plant dispatch.</p>
                 </div>
-                
+
                 <!-- Card 3 -->
                 <div class="facility-card scroll-reveal-up" id="fac-card-3">
                     <span class="fac-number">03</span>
                     <div class="facility-icon-wrapper">
-                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
                     </div>
                     <h3 class="facility-card-title">Aseptic Packaging</h3>
-                    <p class="facility-card-desc">Medical-grade, multi-layer filling lines running inside pressurized HEPA class 100 sterile environments.</p>
+                    <p class="facility-card-desc">Medical-grade, multi-layer filling lines running inside pressurized
+                        HEPA class 100 sterile environments.</p>
                 </div>
-                
+
                 <!-- Card 4 -->
                 <div class="facility-card scroll-reveal-up" id="fac-card-4">
                     <span class="fac-number">04</span>
                     <div class="facility-icon-wrapper">
-                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="1" y="3" width="15" height="13" rx="2" ry="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                        <svg class="facility-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13" rx="2" ry="2" />
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                            <circle cx="5.5" cy="18.5" r="2.5" />
+                            <circle cx="18.5" cy="18.5" r="2.5" />
                         </svg>
                     </div>
                     <h3 class="facility-card-title">Cold Distribution</h3>
-                    <p class="facility-card-desc">Computerized walk-in chillers combined with our proprietary fleet of IoT temperature-logged reefers.</p>
+                    <p class="facility-card-desc">Computerized walk-in chillers combined with our proprietary fleet of
+                        IoT temperature-logged reefers.</p>
                 </div>
             </div>
         </div>
@@ -515,7 +632,8 @@
                 <span class="section-badge">Product Catalog</span>
                 <h2 class="section-title text-center text-slate">Our Premium Product Line</h2>
                 <p class="section-subtitle text-center">
-                    Select a product card to inspect its laboratory datasheet, fat ratios, and packaging storage parameters.
+                    Select a product card to inspect its laboratory datasheet, fat ratios, and packaging storage
+                    parameters.
                 </p>
             </div>
 
@@ -524,15 +642,21 @@
                 <!-- Slider Carousel -->
                 <div class="product-slider-container scroll-reveal-up">
                     <button class="slider-nav-btn prev-btn" id="product-slider-prev" aria-label="Previous Product">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
                     </button>
-                    
+
                     <div class="product-slider-viewport" id="product-slider-viewport">
                         <div class="product-slider-track" id="product-slider-track">
                             <!-- Card 1 -->
-                            <div class="product-slider-card active" data-index="0" data-product-name="Full Cream Milk" data-tag="Milks" data-image="assets/images/products/product1.png" data-fat="6.0% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Rich, creamy pasteurized milk optimized for dessert preps and maximum household nutrition.">
+                            <div class="product-slider-card active" data-index="0" data-product-name="Full Cream Milk"
+                                data-tag="Milks" data-image="assets/images/products/product1.png" data-fat="6.0% Min"
+                                data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Rich, creamy pasteurized milk optimized for dessert preps and maximum household nutrition.">
                                 <div class="card-image-wrapper">
-                                    <img src="assets/images/products/product1.png" alt="Full Cream Milk" class="slider-card-img">
+                                    <img src="assets/images/products/product1.png" alt="Full Cream Milk"
+                                        class="slider-card-img">
                                 </div>
                                 <div class="slider-card-info">
                                     <span class="slider-card-tag">Milks</span>
@@ -540,11 +664,15 @@
                                     <div class="slider-card-quick-specs">Fat: 6.0% | SNF: 9.0%</div>
                                 </div>
                             </div>
-                            
+
                             <!-- Card 2 -->
-                            <div class="product-slider-card" data-index="1" data-product-name="Toned Milk" data-tag="Milks" data-image="assets/images/products/product2.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Balanced pasteurized milk offering great taste and calcium, ideal for tea, coffee, and child nutrition.">
+                            <div class="product-slider-card" data-index="1" data-product-name="Toned Milk"
+                                data-tag="Milks" data-image="assets/images/products/product2.png" data-fat="3.0% Min"
+                                data-snf="8.5% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Balanced pasteurized milk offering great taste and calcium, ideal for tea, coffee, and child nutrition.">
                                 <div class="card-image-wrapper">
-                                    <img src="assets/images/products/product2.png" alt="Toned Milk" class="slider-card-img">
+                                    <img src="assets/images/products/product2.png" alt="Toned Milk"
+                                        class="slider-card-img">
                                 </div>
                                 <div class="slider-card-info">
                                     <span class="slider-card-tag">Milks</span>
@@ -552,11 +680,15 @@
                                     <div class="slider-card-quick-specs">Fat: 3.0% | SNF: 8.5%</div>
                                 </div>
                             </div>
-                            
+
                             <!-- Card 3 -->
-                            <div class="product-slider-card" data-index="2" data-product-name="Double Toned Milk" data-tag="Milks" data-image="assets/images/products/product3.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Highly digestible milk, formulated for fitness enthusiasts and light diet requirements.">
+                            <div class="product-slider-card" data-index="2" data-product-name="Double Toned Milk"
+                                data-tag="Milks" data-image="assets/images/products/product3.png" data-fat="1.5% Min"
+                                data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Highly digestible milk, formulated for fitness enthusiasts and light diet requirements.">
                                 <div class="card-image-wrapper">
-                                    <img src="assets/images/products/product3.png" alt="Double Toned Milk" class="slider-card-img">
+                                    <img src="assets/images/products/product3.png" alt="Double Toned Milk"
+                                        class="slider-card-img">
                                 </div>
                                 <div class="slider-card-info">
                                     <span class="slider-card-tag">Milks</span>
@@ -566,9 +698,13 @@
                             </div>
 
                             <!-- Card 4 -->
-                            <div class="product-slider-card" data-index="3" data-product-name="Skimmed Milk" data-tag="Milks" data-image="assets/images/products/product4.png" data-fat="0.5% Max" data-snf="8.7% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Virtually fat-free milk retaining all essential proteins and calcium without lipids.">
+                            <div class="product-slider-card" data-index="3" data-product-name="Skimmed Milk"
+                                data-tag="Milks" data-image="assets/images/products/product4.png" data-fat="0.5% Max"
+                                data-snf="8.7% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Virtually fat-free milk retaining all essential proteins and calcium without lipids.">
                                 <div class="card-image-wrapper">
-                                    <img src="assets/images/products/product4.png" alt="Skimmed Milk" class="slider-card-img">
+                                    <img src="assets/images/products/product4.png" alt="Skimmed Milk"
+                                        class="slider-card-img">
                                 </div>
                                 <div class="slider-card-info">
                                     <span class="slider-card-tag">Milks</span>
@@ -578,7 +714,11 @@
                             </div>
 
                             <!-- Card 5 -->
-                            <div class="product-slider-card" data-index="4" data-product-name="Curd" data-tag="Fermented" data-image="assets/images/products/product5.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="15 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Thick, set probiotic curd prepared under automated, sanitarily controlled fermentation loops.">
+                            <div class="product-slider-card" data-index="4" data-product-name="Curd"
+                                data-tag="Fermented" data-image="assets/images/products/product5.png"
+                                data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="15 Days"
+                                data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Thick, set probiotic curd prepared under automated, sanitarily controlled fermentation loops.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product5.png" alt="Curd" class="slider-card-img">
                                 </div>
@@ -590,7 +730,11 @@
                             </div>
 
                             <!-- Card 6 -->
-                            <div class="product-slider-card" data-index="5" data-product-name="Yogurt" data-tag="Fermented" data-image="assets/images/products/product6.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="20 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Aseptic flavored fruit yogurt loaded with active cultures to support digestive immunity.">
+                            <div class="product-slider-card" data-index="5" data-product-name="Yogurt"
+                                data-tag="Fermented" data-image="assets/images/products/product6.png"
+                                data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="20 Days"
+                                data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Aseptic flavored fruit yogurt loaded with active cultures to support digestive immunity.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product6.png" alt="Yogurt" class="slider-card-img">
                                 </div>
@@ -602,7 +746,10 @@
                             </div>
 
                             <!-- Card 7 -->
-                            <div class="product-slider-card" data-index="6" data-product-name="Paneer" data-tag="Cheese" data-image="assets/images/products/product7.png" data-fat="50% Dry Matter" data-snf="N/A" data-shelf="30 Days" data-temp="-18°C &plusmn; 1°C" data-desc="Soft, high-protein fresh cottage cheese blocks vacuum-packed in sterile environments.">
+                            <div class="product-slider-card" data-index="6" data-product-name="Paneer" data-tag="Cheese"
+                                data-image="assets/images/products/product7.png" data-fat="50% Dry Matter"
+                                data-snf="N/A" data-shelf="30 Days" data-temp="-18°C &plusmn; 1°C"
+                                data-desc="Soft, high-protein fresh cottage cheese blocks vacuum-packed in sterile environments.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product7.png" alt="Paneer" class="slider-card-img">
                                 </div>
@@ -614,7 +761,10 @@
                             </div>
 
                             <!-- Card 8 -->
-                            <div class="product-slider-card" data-index="7" data-product-name="Butter" data-tag="Fats" data-image="assets/images/products/product8.png" data-fat="80% Min" data-snf="1.5% Max" data-shelf="12 Months" data-temp="-18°C &plusmn; 1°C" data-desc="Rich butter churned continuously from fresh pasteurized dairy cream, yielding excellent structure.">
+                            <div class="product-slider-card" data-index="7" data-product-name="Butter" data-tag="Fats"
+                                data-image="assets/images/products/product8.png" data-fat="80% Min" data-snf="1.5% Max"
+                                data-shelf="12 Months" data-temp="-18°C &plusmn; 1°C"
+                                data-desc="Rich butter churned continuously from fresh pasteurized dairy cream, yielding excellent structure.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product8.png" alt="Butter" class="slider-card-img">
                                 </div>
@@ -626,7 +776,10 @@
                             </div>
 
                             <!-- Card 9 -->
-                            <div class="product-slider-card" data-index="8" data-product-name="Cheese" data-tag="Cheese" data-image="assets/images/products/product9.png" data-fat="26.0%" data-snf="N/A" data-shelf="9 Months" data-temp="4°C &plusmn; 0.5°C" data-desc="Processed cheddar cheese slices and blocks, exhibiting uniform melting performance.">
+                            <div class="product-slider-card" data-index="8" data-product-name="Cheese" data-tag="Cheese"
+                                data-image="assets/images/products/product9.png" data-fat="26.0%" data-snf="N/A"
+                                data-shelf="9 Months" data-temp="4°C &plusmn; 0.5°C"
+                                data-desc="Processed cheddar cheese slices and blocks, exhibiting uniform melting performance.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product9.png" alt="Cheese" class="slider-card-img">
                                 </div>
@@ -638,7 +791,10 @@
                             </div>
 
                             <!-- Card 10 -->
-                            <div class="product-slider-card" data-index="9" data-product-name="Ghee" data-tag="Fats" data-image="assets/images/products/product10.png" data-fat="99.7% Min" data-snf="0.3% Max" data-shelf="12 Months" data-temp="Ambient" data-desc="Premium granular ghee clarified traditionally, generating a rich aromatic profile.">
+                            <div class="product-slider-card" data-index="9" data-product-name="Ghee" data-tag="Fats"
+                                data-image="assets/images/products/product10.png" data-fat="99.7% Min"
+                                data-snf="0.3% Max" data-shelf="12 Months" data-temp="Ambient"
+                                data-desc="Premium granular ghee clarified traditionally, generating a rich aromatic profile.">
                                 <div class="card-image-wrapper">
                                     <img src="assets/images/products/product10.png" alt="Ghee" class="slider-card-img">
                                 </div>
@@ -651,9 +807,11 @@
 
                         </div>
                     </div>
-                    
+
                     <button class="slider-nav-btn next-btn" id="product-slider-next" aria-label="Next Product">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l6 6-6 6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M9 5l6 6-6 6" />
+                        </svg>
                     </button>
                 </div>
 
@@ -662,16 +820,18 @@
                     <div class="datasheet-panel-inner" id="datasheet-panel-inner">
                         <div class="datasheet-left-col">
                             <div class="datasheet-img-container">
-                                <img src="assets/images/products/product1.png" alt="Product Image" id="showcase-main-img" class="datasheet-main-img">
+                                <img src="assets/images/products/product1.png" alt="Product Image"
+                                    id="showcase-main-img" class="datasheet-main-img">
                             </div>
                         </div>
                         <div class="datasheet-right-col">
                             <div class="datasheet-meta">
                                 <span class="datasheet-tag" id="showcase-tag">Milks</span>
                                 <h3 class="datasheet-title" id="showcase-title">Full Cream Milk</h3>
-                                <p class="datasheet-desc" id="showcase-desc">Rich and creamy pasteurized milk, perfect for traditional desserts, thick curds, and daily household nutrition.</p>
+                                <p class="datasheet-desc" id="showcase-desc">Rich and creamy pasteurized milk, perfect
+                                    for traditional desserts, thick curds, and daily household nutrition.</p>
                             </div>
-                            
+
                             <div class="datasheet-spec-table">
                                 <h4 class="datasheet-table-header">LABORATORY ANALYSIS &amp; CRITICAL PARAMETERS</h4>
                                 <div class="datasheet-grid-specs">
@@ -693,11 +853,15 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="datasheet-actions">
-                                <a href="#contact" class="btn btn-primary btn-block btn-lg btn-magnetic" id="showcase-inquire-btn">
+                                <a href="#contact" class="btn btn-primary btn-block btn-lg btn-magnetic"
+                                    id="showcase-inquire-btn">
                                     <span class="magnetic-text">Inquire Bulk Ordering</span>
-                                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -714,7 +878,8 @@
                 <span class="section-badge">Visual Tour</span>
                 <h2 class="section-title text-center text-slate">Operations Gallery</h2>
                 <p class="section-subtitle text-center">
-                    Explore inside our processing lines, testing laboratory, and temperature-controlled logistics networks.
+                    Explore inside our processing lines, testing laboratory, and temperature-controlled logistics
+                    networks.
                 </p>
             </div>
 
@@ -729,9 +894,12 @@
             <!-- Staggered Gallery Grid -->
             <div class="gallery-grid" id="gallery-grid-items">
                 <!-- Item 1 -->
-                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" data-caption="SCADA fluid monitoring systems regulating milk pasteurization flow-rates.">
+                <div class="gallery-item scroll-reveal-up" data-category="processing"
+                    data-src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="SCADA fluid monitoring systems regulating milk pasteurization flow-rates.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="SCADA Control Desk" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
+                            alt="SCADA Control Desk" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Processing</span>
                             <span class="gallery-item-title">SCADA Telemetry System</span>
@@ -739,9 +907,12 @@
                     </div>
                 </div>
                 <!-- Item 2 -->
-                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80" data-caption="High-precision stainless steel pipeline pathways for aseptic milk transfer.">
+                <div class="gallery-item scroll-reveal-up" data-category="processing"
+                    data-src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="High-precision stainless steel pipeline pathways for aseptic milk transfer.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80" alt="Processing Pipeline System" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80"
+                            alt="Processing Pipeline System" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Processing</span>
                             <span class="gallery-item-title">Processing Pipelines</span>
@@ -749,9 +920,12 @@
                     </div>
                 </div>
                 <!-- Item 3 -->
-                <div class="gallery-item scroll-reveal-up" data-category="laboratory" data-src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80" data-caption="Chemical and biological analysis performed under strict laminar air-flow hoods.">
+                <div class="gallery-item scroll-reveal-up" data-category="laboratory"
+                    data-src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="Chemical and biological analysis performed under strict laminar air-flow hoods.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80" alt="Quality Control Laboratory" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=600&q=80"
+                            alt="Quality Control Laboratory" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Laboratory</span>
                             <span class="gallery-item-title">Quality Testing Lab</span>
@@ -759,9 +933,12 @@
                     </div>
                 </div>
                 <!-- Item 4 -->
-                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80" data-caption="Massive insulated raw-milk storage silos maintaining temperatures below 4°C.">
+                <div class="gallery-item scroll-reveal-up" data-category="processing"
+                    data-src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="Massive insulated raw-milk storage silos maintaining temperatures below 4°C.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" alt="Massive Milk Silos" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80"
+                            alt="Massive Milk Silos" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Processing</span>
                             <span class="gallery-item-title">Insulated Silos</span>
@@ -769,9 +946,12 @@
                     </div>
                 </div>
                 <!-- Item 5 -->
-                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=1200&q=80" data-caption="Automated packaging carousel running aseptic filling operations.">
+                <div class="gallery-item scroll-reveal-up" data-category="processing"
+                    data-src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="Automated packaging carousel running aseptic filling operations.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=600&q=80" alt="Automated Packaging Line" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=600&q=80"
+                            alt="Automated Packaging Line" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Processing</span>
                             <span class="gallery-item-title">Automated Packaging</span>
@@ -779,9 +959,12 @@
                     </div>
                 </div>
                 <!-- Item 6 -->
-                <div class="gallery-item scroll-reveal-up" data-category="logistics" data-src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80" data-caption="Proprietary fleet of refrigerated trailers maintaining direct cold chains.">
+                <div class="gallery-item scroll-reveal-up" data-category="logistics"
+                    data-src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80"
+                    data-caption="Proprietary fleet of refrigerated trailers maintaining direct cold chains.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80" alt="Refrigerated Distribution Logistics" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80"
+                            alt="Refrigerated Distribution Logistics" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Logistics</span>
                             <span class="gallery-item-title">Cold-chain Logistics</span>
@@ -799,7 +982,8 @@
                 <span class="section-badge">Partnership Portal</span>
                 <h2 class="section-title text-center text-slate">Partner With Milknest</h2>
                 <p class="section-subtitle text-center">
-                    Submit bulk supply queries, distributor proposals, or general facility requests directly to our management board.
+                    Submit bulk supply queries, distributor proposals, or general facility requests directly to our
+                    management board.
                 </p>
             </div>
 
@@ -815,7 +999,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="form-email" class="form-label">Email Address</label>
-                                <input type="email" id="form-email" class="form-input" placeholder="name@company.com" required>
+                                <input type="email" id="form-email" class="form-input" placeholder="name@company.com"
+                                    required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -824,11 +1009,17 @@
                         </div>
                         <div class="form-group">
                             <label for="form-message" class="form-label">Message / Requirement Details</label>
-                            <textarea id="form-message" rows="4" class="form-input" placeholder="Describe bulk quantities or distributor zones of interest..." required></textarea>
+                            <textarea id="form-message" rows="4" class="form-input"
+                                placeholder="Describe bulk quantities or distributor zones of interest..."
+                                required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-lg btn-magnetic" id="contact-form-submit-btn">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg btn-magnetic"
+                            id="contact-form-submit-btn">
                             <span class="magnetic-text">Send Message</span>
-                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
                         </button>
                         <div id="form-feedback" class="form-feedback"></div>
                     </form>
@@ -842,17 +1033,26 @@
                             <!-- Address -->
                             <div class="info-item">
                                 <div class="info-icon-wrapper">
-                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
                                 </div>
                                 <div class="info-text">
                                     <h4 class="info-heading">Facility Address</h4>
-                                    <p class="info-desc">Milknest Plant, Plot 42-45, Phase II, Peenya Industrial Area, Bengaluru, Karnataka, India - 560058</p>
+                                    <p class="info-desc">Milknest Plant, Plot 42-45, Phase II, Peenya Industrial Area,
+                                        Bengaluru, Karnataka, India - 560058</p>
                                 </div>
                             </div>
                             <!-- Phone -->
                             <div class="info-item">
                                 <div class="info-icon-wrapper">
-                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                    </svg>
                                 </div>
                                 <div class="info-text">
                                     <h4 class="info-heading">Phone Lines</h4>
@@ -862,7 +1062,12 @@
                             <!-- Email -->
                             <div class="info-item">
                                 <div class="info-icon-wrapper">
-                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
                                 </div>
                                 <div class="info-text">
                                     <h4 class="info-heading">Direct Email</h4>
@@ -874,15 +1079,10 @@
 
                     <!-- Clean Styled Map -->
                     <div class="contact-map-container" id="contact-map-box">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3887.025345756184!2d77.51408107572714!3d13.034079813511874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d72496a7cc1%3A0x6b10eb96eb0092bc!2sPeenya%20Industrial%20Area%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1719266400000!5m2!1sen!2sin" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Milknest Corporate Location Map"
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3887.025345756184!2d77.51408107572714!3d13.034079813511874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d72496a7cc1%3A0x6b10eb96eb0092bc!2sPeenya%20Industrial%20Area%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1719266400000!5m2!1sen!2sin"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" title="Milknest Corporate Location Map"
                             class="contact-map-iframe">
                         </iframe>
                     </div>
@@ -896,19 +1096,30 @@
         <div class="section-container footer-content-grid">
             <!-- Footer Brand Column -->
             <div class="footer-brand-col">
-                <img src="assets/images/milknest-updated-logo.png" alt="Milknest Logo" class="footer-logo" id="footer-logo-img">
+                <img src="assets/images/milknest-updated-logo.png" alt="Milknest Logo" class="footer-logo"
+                    id="footer-logo-img">
                 <p class="footer-brand-tagline">
-                    Leading the dairy industry with state-of-the-art technological automation, rigorous biosafety parameters, and solid logistics.
+                    Leading the dairy industry with state-of-the-art technological automation, rigorous biosafety
+                    parameters, and solid logistics.
                 </p>
                 <div class="footer-socials">
                     <a href="#" aria-label="LinkedIn Profile" class="social-icon-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
                     </a>
                     <a href="#" aria-label="Twitter Profile" class="social-icon-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                        </svg>
                     </a>
                     <a href="#" aria-label="Facebook Profile" class="social-icon-link">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -931,15 +1142,27 @@
                 <h4 class="footer-col-title">Contact Office</h4>
                 <ul class="footer-contact-list">
                     <li>
-                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
                         <span>Peenya Industrial Area, Bengaluru, Karnataka, India</span>
                     </li>
                     <li>
-                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
                         <span>+91 80 4567 8900</span>
                     </li>
                     <li>
-                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
                         <span>info@milknestdairy.com</span>
                     </li>
                 </ul>
@@ -948,7 +1171,8 @@
 
         <div class="footer-bottom">
             <div class="section-container footer-bottom-flex">
-                <p class="copyright-notice" id="footer-copyright">&copy; 2026 Milknest Dairy Processing Pvt. Ltd. All rights reserved.</p>
+                <p class="copyright-notice" id="footer-copyright">&copy; 2026 Milknest Dairy Processing Pvt. Ltd. All
+                    rights reserved.</p>
                 <div class="footer-legal-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
@@ -962,11 +1186,14 @@
     <button id="back-to-top" class="back-to-top" aria-label="Scroll Back To Top">
         <!-- SVG Progress Circle -->
         <svg class="progress-circle" width="48" height="48" viewBox="0 0 48 48">
-            <circle class="progress-circle-bg" cx="24" cy="24" r="20" fill="none" stroke="#E2E8F0" stroke-width="3"/>
-            <circle class="progress-circle-fill" id="back-to-top-progress" cx="24" cy="24" r="20" fill="none" stroke="#2563EB" stroke-width="3" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
+            <circle class="progress-circle-bg" cx="24" cy="24" r="20" fill="none" stroke="#E2E8F0" stroke-width="3" />
+            <circle class="progress-circle-fill" id="back-to-top-progress" cx="24" cy="24" r="20" fill="none"
+                stroke="#2563EB" stroke-width="3" stroke-dasharray="125.6" stroke-dashoffset="125.6" />
         </svg>
         <span class="arrow-up-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="18 15 12 9 6 15" />
+            </svg>
         </span>
     </button>
 
@@ -987,4 +1214,5 @@
     <!-- Main Logic Script -->
     <script src="script.js"></script>
 </body>
+
 </html>
