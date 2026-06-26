@@ -110,9 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeCanvas();
         drawFrame(0);
 
-        // Start Intersection Observer reveals
+        // Start GSAP reveals, counters, and slider controllers
         initScrollReveals();
         initStatsCounters();
+        initJourneyGSAP();
+        initProductSlider();
 
         // Enable page interactions
         document.body.style.overflowY = 'auto';
@@ -272,48 +274,65 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hudPhVal) hudPhVal.textContent = finalPh;
     }
 
-    function handleJourneyScroll() {
+    function initJourneyGSAP() {
         if (!journeySection) return;
 
-        const rect = journeySection.getBoundingClientRect();
-        const sectionTop = window.scrollY + rect.top;
-        const sectionHeight = rect.height;
-        const viewportHeight = window.innerHeight;
+        const frameObj = { frame: 0 };
 
-        // Calculate scroll ratio inside 400vh journey container
-        let scrollRatio = (window.scrollY - sectionTop) / (sectionHeight - viewportHeight);
-        scrollRatio = Math.max(0, Math.min(1, scrollRatio));
+        gsap.to(frameObj, {
+            frame: totalFrames - 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: journeySection,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1.2,
+                onUpdate: (self) => {
+                    const index = Math.floor(frameObj.frame);
+                    if (index !== currentFrameIndex) {
+                        currentFrameIndex = index;
+                        drawFrame(currentFrameIndex);
+                    }
 
-        // 1. Draw frame based on progress
-        const frameIndex = Math.floor(scrollRatio * (totalFrames - 1));
-        if (frameIndex !== currentFrameIndex) {
-            currentFrameIndex = frameIndex;
-            drawFrame(currentFrameIndex);
-        }
+                    const progress = self.progress;
+                    if (stepperProgress) {
+                        stepperProgress.style.height = `${progress * 100}%`;
+                    }
 
-        // 2. Update vertical stepper progress bar height
-        if (stepperProgress) {
-            stepperProgress.style.height = `${scrollRatio * 100}%`;
-        }
+                    stepThresholds.forEach(threshold => {
+                        const card = document.getElementById(`journey-step-${threshold.step}`);
+                        const dot = document.querySelector(`.step-dot[data-step="${threshold.step}"]`);
 
-        // 3. Active step cards fade transitions & telemetry updates
-        let activeStep = 1;
-        stepThresholds.forEach(threshold => {
-            const card = document.getElementById(`journey-step-${threshold.step}`);
-            const dot = document.querySelector(`.step-dot[data-step="${threshold.step}"]`);
+                        if (progress >= threshold.min && progress <= threshold.max) {
+                            if (card && !card.classList.contains('active')) {
+                                card.classList.add('active');
+                                gsap.fromTo(card,
+                                    { opacity: 0, y: 30, scale: 0.95, filter: "blur(6px)" },
+                                    { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out", overwrite: "auto" }
+                                );
+                            }
+                            if (dot) dot.classList.add('active');
 
-            if (scrollRatio >= threshold.min && scrollRatio <= threshold.max) {
-                activeStep = threshold.step;
-                if (card) card.classList.add('active');
-                if (dot) dot.classList.add('active');
-
-                // Calculate local progress inside this specific step range
-                const rangeSpan = threshold.max - threshold.min;
-                const localProgress = (scrollRatio - threshold.min) / rangeSpan;
-                updateHudTelemetry(activeStep, localProgress);
-            } else {
-                if (card) card.classList.remove('active');
-                if (dot) dot.classList.remove('active');
+                            const rangeSpan = threshold.max - threshold.min;
+                            const localProgress = (progress - threshold.min) / rangeSpan;
+                            updateHudTelemetry(threshold.step, localProgress);
+                        } else {
+                            if (card && card.classList.contains('active')) {
+                                card.classList.remove('active');
+                                gsap.to(card, {
+                                    opacity: 0,
+                                    y: -30,
+                                    scale: 0.95,
+                                    filter: "blur(6px)",
+                                    duration: 0.4,
+                                    ease: "power2.in",
+                                    overwrite: "auto"
+                                });
+                            }
+                            if (dot) dot.classList.remove('active');
+                        }
+                    });
+                }
             }
         });
     }
@@ -339,8 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    window.addEventListener('scroll', handleJourneyScroll);
 
     // ----------------------------------------------------------------------
     // 7. SHRUNKEN STICKY HEADER & NAV ACTIVE STATE (SCROLL SPY)
@@ -396,10 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 8. MASTER-DETAIL PRODUCT SWITCHER
     // ----------------------------------------------------------------------
-    const masterCards = document.querySelectorAll('.product-master-card');
-    const showcaseContainer = document.querySelector('.showcase-card-inner');
-
-    // Showcase UI elements
+    // Slider and Showcase UI elements
     const showcaseImg = document.getElementById('showcase-main-img');
     const showcaseTag = document.getElementById('showcase-tag');
     const showcaseTitle = document.getElementById('showcase-title');
@@ -408,57 +422,212 @@ document.addEventListener('DOMContentLoaded', () => {
     const showcaseSnf = document.getElementById('showcase-snf');
     const showcaseShelf = document.getElementById('showcase-shelf');
     const showcaseTemp = document.getElementById('showcase-temp');
+    const datasheetInner = document.getElementById('datasheet-panel-inner');
 
-    function updateProductShowcase(card) {
-        if (!showcaseContainer || card.classList.contains('active')) return;
+    function updateProductDatasheet(card) {
+        if (!datasheetInner) return;
 
-        // Toggle active classes
-        masterCards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
+        const newName = card.getAttribute('data-product-name');
+        if (showcaseTitle && showcaseTitle.textContent === newName) return;
 
-        // Add soft fade-out transition
-        showcaseContainer.classList.add('fade-out');
+        gsap.to(datasheetInner, {
+            opacity: 0,
+            y: 15,
+            duration: 0.2,
+            onComplete: () => {
+                const tag = card.getAttribute('data-tag');
+                const imgPath = card.getAttribute('data-image');
+                const fat = card.getAttribute('data-fat');
+                const snf = card.getAttribute('data-snf');
+                const shelf = card.getAttribute('data-shelf');
+                const temp = card.getAttribute('data-temp');
+                const desc = card.getAttribute('data-desc');
 
-        setTimeout(() => {
-            // Read parameters from data attributes
-            const name = card.getAttribute('data-product-name');
-            const tag = card.getAttribute('data-tag');
-            const imgPath = card.getAttribute('data-image');
-            const fat = card.getAttribute('data-fat');
-            const snf = card.getAttribute('data-snf');
-            const shelf = card.getAttribute('data-shelf');
-            const temp = card.getAttribute('data-temp');
-            const desc = card.getAttribute('data-desc');
+                if (showcaseImg) {
+                    showcaseImg.src = imgPath;
+                    showcaseImg.alt = newName;
+                }
+                if (showcaseTag) showcaseTag.textContent = tag;
+                if (showcaseTitle) showcaseTitle.textContent = newName;
+                if (showcaseDesc) showcaseDesc.textContent = desc;
+                if (showcaseFat) showcaseFat.textContent = fat;
+                if (showcaseSnf) showcaseSnf.textContent = snf;
+                if (showcaseShelf) showcaseShelf.textContent = shelf;
+                if (showcaseTemp) showcaseTemp.textContent = temp;
 
-            // Set content in showcase
-            if (showcaseImg) {
-                showcaseImg.src = imgPath;
-                showcaseImg.alt = name;
+                gsap.fromTo(datasheetInner,
+                    { opacity: 0, y: -15 },
+                    { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+                );
             }
-            if (showcaseTag) showcaseTag.textContent = tag;
-            if (showcaseTitle) showcaseTitle.textContent = name;
-            if (showcaseDesc) showcaseDesc.textContent = desc;
-            if (showcaseFat) showcaseFat.textContent = fat;
-            if (showcaseSnf) showcaseSnf.textContent = snf;
-            if (showcaseShelf) showcaseShelf.textContent = shelf;
-            if (showcaseTemp) showcaseTemp.textContent = temp;
-
-            // Remove fade-out class to slide/fade back in
-            showcaseContainer.classList.remove('fade-out');
-        }, 200);
+        });
     }
 
-    masterCards.forEach(card => {
-        // Trigger on click
-        card.addEventListener('click', () => {
-            updateProductShowcase(card);
+    function initProductSlider() {
+        const viewport = document.getElementById('product-slider-viewport');
+        const track = document.getElementById('product-slider-track');
+        const cards = document.querySelectorAll('.product-slider-card');
+        const prevBtn = document.getElementById('product-slider-prev');
+        const nextBtn = document.getElementById('product-slider-next');
+
+        if (!viewport || !track || !cards.length) return;
+
+        let currentIdx = 0;
+        let isDragging = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        function scrollToProduct(idx) {
+            currentIdx = idx;
+
+            cards.forEach(c => c.classList.remove('active'));
+            const activeCard = cards[currentIdx];
+            activeCard.classList.add('active');
+
+            const viewportWidth = viewport.clientWidth;
+            const cardLeft = activeCard.offsetLeft;
+            const cardWidth = activeCard.clientWidth;
+
+            let targetX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
+
+            const maxScroll = -(track.scrollWidth - viewportWidth);
+            if (targetX > 0) targetX = 0;
+            if (targetX < maxScroll) targetX = maxScroll;
+
+            gsap.to(track, {
+                x: targetX,
+                duration: 0.6,
+                ease: "power3.out"
+            });
+
+            updateProductDatasheet(activeCard);
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentIdx > 0) {
+                    scrollToProduct(currentIdx - 1);
+                } else {
+                    scrollToProduct(cards.length - 1);
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentIdx < cards.length - 1) {
+                    scrollToProduct(currentIdx + 1);
+                } else {
+                    scrollToProduct(0);
+                }
+            });
+        }
+
+        cards.forEach((card, idx) => {
+            card.addEventListener('click', () => {
+                scrollToProduct(idx);
+            });
+            card.addEventListener('mouseenter', () => {
+                scrollToProduct(idx);
+            });
         });
 
-        // Trigger on hover for premium seamless catalog interaction
-        card.addEventListener('mouseenter', () => {
-            updateProductShowcase(card);
+        // Drag scroll support
+        viewport.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
+            viewport.style.cursor = 'grabbing';
         });
-    });
+
+        viewport.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+                viewport.style.cursor = 'grab';
+            }
+        });
+
+        viewport.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                viewport.style.cursor = 'grab';
+
+                let nearestIdx = 0;
+                let minDiff = Infinity;
+                const trackX = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
+
+                cards.forEach((card, idx) => {
+                    const viewportWidth = viewport.clientWidth;
+                    const cardLeft = card.offsetLeft;
+                    const cardWidth = card.clientWidth;
+                    const idealX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
+                    const diff = Math.abs(trackX - idealX);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        nearestIdx = idx;
+                    }
+                });
+                scrollToProduct(nearestIdx);
+            }
+        });
+
+        viewport.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            let targetX = scrollLeft + walk;
+
+            const maxScroll = -(track.scrollWidth - viewport.clientWidth);
+            if (targetX > 0) targetX = 0;
+            if (targetX < maxScroll) targetX = maxScroll;
+
+            gsap.set(track, { x: targetX });
+        });
+
+        // Touch support
+        let touchStartX = 0;
+        viewport.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            scrollLeft = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', (e) => {
+            const touchX = e.touches[0].clientX;
+            const diffX = touchX - touchStartX;
+            let targetX = scrollLeft + diffX;
+
+            const maxScroll = -(track.scrollWidth - viewport.clientWidth);
+            if (targetX > 0) targetX = 0;
+            if (targetX < maxScroll) targetX = maxScroll;
+
+            gsap.set(track, { x: targetX });
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', () => {
+            let nearestIdx = 0;
+            let minDiff = Infinity;
+            const trackX = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
+
+            cards.forEach((card, idx) => {
+                const viewportWidth = viewport.clientWidth;
+                const cardLeft = card.offsetLeft;
+                const cardWidth = card.clientWidth;
+                const idealX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
+                const diff = Math.abs(trackX - idealX);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    nearestIdx = idx;
+                }
+            });
+            scrollToProduct(nearestIdx);
+        }, { passive: true });
+
+        // Center card 0 initially
+        setTimeout(() => {
+            scrollToProduct(0);
+        }, 100);
+    }
 
     // ----------------------------------------------------------------------
     // 9. MAGNETIC CTA BUTTON CONTROLLER
@@ -532,77 +701,72 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 11. COUNTER ANIMATION FOR STATS CARDS
     // ----------------------------------------------------------------------
-    function animateCounter(element) {
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000;
-        const startTime = performance.now();
-
-        function updateNumber(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // Cubic ease-out
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            const currentValue = Math.floor(easeProgress * target);
-
-            element.textContent = currentValue.toLocaleString();
-
-            if (progress < 1) {
-                requestAnimationFrame(updateNumber);
-            } else {
-                element.textContent = target.toLocaleString();
-            }
-        }
-        requestAnimationFrame(updateNumber);
-    }
-
     function initStatsCounters() {
         const statsSection = document.getElementById('about');
+        if (!statsSection) return;
+
         const counters = document.querySelectorAll('.stat-number');
-        let animated = false;
+        const fills = document.querySelectorAll('.stat-progress-fill');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animated) {
-                    counters.forEach(counter => animateCounter(counter));
-
-                    // Trigger stat progress line fill animations
-                    const fills = document.querySelectorAll('.stat-progress-fill');
-                    fills.forEach(fill => {
-                        const targetWidth = fill.parentElement.parentElement.querySelector('.stat-progress-fill').style.width;
-                        fill.style.width = '0%';
-                        setTimeout(() => {
-                            fill.style.width = targetWidth;
-                        }, 100);
+        ScrollTrigger.create({
+            trigger: statsSection,
+            start: "top 75%",
+            onEnter: () => {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: target,
+                        duration: 2.0,
+                        ease: "power3.out",
+                        onUpdate: () => {
+                            counter.textContent = Math.floor(obj.val).toLocaleString();
+                        }
                     });
+                });
 
-                    animated = true;
-                    observer.unobserve(statsSection);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
+                fills.forEach(fill => {
+                    const targetWidth = fill.style.width || "0%";
+                    gsap.fromTo(fill,
+                        { width: "0%" },
+                        { width: targetWidth, duration: 1.5, ease: "power3.out" }
+                    );
+                });
+            },
+            once: true
+        });
     }
 
     // ----------------------------------------------------------------------
-    // 12. INTERSECTION OBSERVER FOR SCROLL REVEALS
+    // 12. GSAP SCROLLTRIGGER FOR SCROLL REVEALS
     // ----------------------------------------------------------------------
     function initScrollReveals() {
         const revealElements = document.querySelectorAll('.scroll-reveal-up, .scroll-reveal-left, .scroll-reveal-right');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => {
+            let xOffset = 0;
+            let yOffset = 0;
 
-        revealElements.forEach(el => observer.observe(el));
+            if (el.classList.contains('scroll-reveal-up')) yOffset = 40;
+            if (el.classList.contains('scroll-reveal-left')) xOffset = -40;
+            if (el.classList.contains('scroll-reveal-right')) xOffset = 40;
+
+            gsap.fromTo(el,
+                { opacity: 0, x: xOffset, y: yOffset },
+                {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    duration: 1.0,
+                    ease: "expo.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
     }
 
     // ----------------------------------------------------------------------

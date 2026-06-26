@@ -482,158 +482,189 @@
                 </p>
             </div>
 
-            <!-- Master-Detail UX Layout -->
-            <div class="products-master-detail">
-                
-                <!-- Left Showcase (Detail panel - Sticky on Desktop) -->
-                <div class="product-detail-showcase scroll-reveal-left" id="product-active-showcase">
-                    <div class="showcase-card-inner">
-                        <div class="showcase-img-container">
-                            <img src="assets/images/products/product1.png" alt="Product Image" id="showcase-main-img" class="showcase-main-img">
-                        </div>
-                        <div class="showcase-meta-group">
-                            <span class="showcase-tag" id="showcase-tag">Milks</span>
-                            <h3 class="showcase-title" id="showcase-title">Full Cream Milk</h3>
-                            <p class="showcase-desc" id="showcase-desc">Rich and creamy pasteurized milk, perfect for traditional desserts, thick curds, and daily household nutrition.</p>
-                        </div>
-                        
-                        <div class="showcase-spec-table">
-                            <h4 class="spec-table-header">LABORATORY DATASHEET</h4>
-                            <div class="showcase-spec-row"><span class="spec-lbl">FAT CONTENT</span><span class="spec-val" id="showcase-fat">6.0% Min</span></div>
-                            <div class="showcase-spec-row"><span class="spec-lbl">SNF RATIO</span><span class="spec-val" id="showcase-snf">9.0% Min</span></div>
-                            <div class="showcase-spec-row"><span class="spec-lbl">SHELF LIFE</span><span class="spec-val" id="showcase-shelf">48 Hours</span></div>
-                            <div class="showcase-spec-row"><span class="spec-lbl">STORAGE TEMP</span><span class="spec-val" id="showcase-temp">4°C &plusmn; 0.5°C</span></div>
-                        </div>
-                        
-                        <div class="showcase-action">
-                            <a href="#contact" class="btn btn-primary btn-block" id="showcase-inquire-btn">Inquire Bulk Ordering</a>
+            <!-- Premium Slider UX Layout -->
+            <div class="products-slider-section">
+                <!-- Slider Carousel -->
+                <div class="product-slider-container scroll-reveal-up">
+                    <button class="slider-nav-btn prev-btn" id="product-slider-prev" aria-label="Previous Product">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    
+                    <div class="product-slider-viewport" id="product-slider-viewport">
+                        <div class="product-slider-track" id="product-slider-track">
+                            <!-- Card 1 -->
+                            <div class="product-slider-card active" data-index="0" data-product-name="Full Cream Milk" data-tag="Milks" data-image="assets/images/products/product1.png" data-fat="6.0% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Rich, creamy pasteurized milk optimized for dessert preps and maximum household nutrition.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product1.png" alt="Full Cream Milk" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Milks</span>
+                                    <h4 class="slider-card-name">Full Cream Milk</h4>
+                                    <div class="slider-card-quick-specs">Fat: 6.0% | SNF: 9.0%</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 2 -->
+                            <div class="product-slider-card" data-index="1" data-product-name="Toned Milk" data-tag="Milks" data-image="assets/images/products/product2.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Balanced pasteurized milk offering great taste and calcium, ideal for tea, coffee, and child nutrition.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product2.png" alt="Toned Milk" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Milks</span>
+                                    <h4 class="slider-card-name">Toned Milk</h4>
+                                    <div class="slider-card-quick-specs">Fat: 3.0% | SNF: 8.5%</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Card 3 -->
+                            <div class="product-slider-card" data-index="2" data-product-name="Double Toned Milk" data-tag="Milks" data-image="assets/images/products/product3.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Highly digestible milk, formulated for fitness enthusiasts and light diet requirements.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product3.png" alt="Double Toned Milk" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Milks</span>
+                                    <h4 class="slider-card-name">Double Toned Milk</h4>
+                                    <div class="slider-card-quick-specs">Fat: 1.5% | SNF: 9.0%</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="product-slider-card" data-index="3" data-product-name="Skimmed Milk" data-tag="Milks" data-image="assets/images/products/product4.png" data-fat="0.5% Max" data-snf="8.7% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Virtually fat-free milk retaining all essential proteins and calcium without lipids.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product4.png" alt="Skimmed Milk" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Milks</span>
+                                    <h4 class="slider-card-name">Skimmed Milk</h4>
+                                    <div class="slider-card-quick-specs">Fat: 0.5% Max | SNF: 8.7%</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 5 -->
+                            <div class="product-slider-card" data-index="4" data-product-name="Curd" data-tag="Fermented" data-image="assets/images/products/product5.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="15 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Thick, set probiotic curd prepared under automated, sanitarily controlled fermentation loops.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product5.png" alt="Curd" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Fermented</span>
+                                    <h4 class="slider-card-name">Curd</h4>
+                                    <div class="slider-card-quick-specs">Probiotic | Thick Set</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 6 -->
+                            <div class="product-slider-card" data-index="5" data-product-name="Yogurt" data-tag="Fermented" data-image="assets/images/products/product6.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="20 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Aseptic flavored fruit yogurt loaded with active cultures to support digestive immunity.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product6.png" alt="Yogurt" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Fermented</span>
+                                    <h4 class="slider-card-name">Yogurt</h4>
+                                    <div class="slider-card-quick-specs">Active Cultures | Smooth</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 7 -->
+                            <div class="product-slider-card" data-index="6" data-product-name="Paneer" data-tag="Cheese" data-image="assets/images/products/product7.png" data-fat="50% Dry Matter" data-snf="N/A" data-shelf="30 Days" data-temp="-18°C &plusmn; 1°C" data-desc="Soft, high-protein fresh cottage cheese blocks vacuum-packed in sterile environments.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product7.png" alt="Paneer" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Cheese</span>
+                                    <h4 class="slider-card-name">Paneer</h4>
+                                    <div class="slider-card-quick-specs">High Protein | Vacuum Pack</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 8 -->
+                            <div class="product-slider-card" data-index="7" data-product-name="Butter" data-tag="Fats" data-image="assets/images/products/product8.png" data-fat="80% Min" data-snf="1.5% Max" data-shelf="12 Months" data-temp="-18°C &plusmn; 1°C" data-desc="Rich butter churned continuously from fresh pasteurized dairy cream, yielding excellent structure.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product8.png" alt="Butter" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Fats</span>
+                                    <h4 class="slider-card-name">Butter</h4>
+                                    <div class="slider-card-quick-specs">Fat: 80% | Rich Churned</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 9 -->
+                            <div class="product-slider-card" data-index="8" data-product-name="Cheese" data-tag="Cheese" data-image="assets/images/products/product9.png" data-fat="26.0%" data-snf="N/A" data-shelf="9 Months" data-temp="4°C &plusmn; 0.5°C" data-desc="Processed cheddar cheese slices and blocks, exhibiting uniform melting performance.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product9.png" alt="Cheese" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Cheese</span>
+                                    <h4 class="slider-card-name">Cheese</h4>
+                                    <div class="slider-card-quick-specs">Cheddar Blend | Uniform Melt</div>
+                                </div>
+                            </div>
+
+                            <!-- Card 10 -->
+                            <div class="product-slider-card" data-index="9" data-product-name="Ghee" data-tag="Fats" data-image="assets/images/products/product10.png" data-fat="99.7% Min" data-snf="0.3% Max" data-shelf="12 Months" data-temp="Ambient" data-desc="Premium granular ghee clarified traditionally, generating a rich aromatic profile.">
+                                <div class="card-image-wrapper">
+                                    <img src="assets/images/products/product10.png" alt="Ghee" class="slider-card-img">
+                                </div>
+                                <div class="slider-card-info">
+                                    <span class="slider-card-tag">Fats</span>
+                                    <h4 class="slider-card-name">Ghee</h4>
+                                    <div class="slider-card-quick-specs">Fat: 99.7% | Pure Granular</div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                    
+                    <button class="slider-nav-btn next-btn" id="product-slider-next" aria-label="Next Product">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 5l6 6-6 6"/></svg>
+                    </button>
                 </div>
 
-                <!-- Right Grid (Master controls list) -->
-                <div class="product-master-list scroll-reveal-right" id="product-master-grid">
-                    
-                    <!-- Card 1 -->
-                    <div class="product-master-card active" data-index="0" data-product-name="Full Cream Milk" data-tag="Milks" data-image="assets/images/products/product1.png" data-fat="6.0% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Rich, creamy pasteurized milk optimized for dessert preps and maximum household nutrition.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product1.png" alt="Full Cream Milk" class="card-thumb">
+                <!-- Active Product Detail Panel (Below Slider) -->
+                <div class="product-datasheet-panel scroll-reveal-up" id="product-active-showcase">
+                    <div class="datasheet-panel-inner" id="datasheet-panel-inner">
+                        <div class="datasheet-left-col">
+                            <div class="datasheet-img-container">
+                                <img src="assets/images/products/product1.png" alt="Product Image" id="showcase-main-img" class="datasheet-main-img">
+                            </div>
                         </div>
-                        <div class="card-info">
-                            <span class="card-tag">Milks</span>
-                            <h4 class="card-name">Full Cream Milk</h4>
-                            <div class="card-quick-specs">Fat: 6.0% | SNF: 9.0%</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="product-master-card" data-index="1" data-product-name="Toned Milk" data-tag="Milks" data-image="assets/images/products/product2.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Balanced pasteurized milk offering great taste and calcium, ideal for tea, coffee, and child nutrition.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product2.png" alt="Toned Milk" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Milks</span>
-                            <h4 class="card-name">Toned Milk</h4>
-                            <div class="card-quick-specs">Fat: 3.0% | SNF: 8.5%</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="product-master-card" data-index="2" data-product-name="Double Toned Milk" data-tag="Milks" data-image="assets/images/products/product3.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Highly digestible milk, formulated for fitness enthusiasts and light diet requirements.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product3.png" alt="Double Toned Milk" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Milks</span>
-                            <h4 class="card-name">Double Toned Milk</h4>
-                            <div class="card-quick-specs">Fat: 1.5% | SNF: 9.0%</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="product-master-card" data-index="3" data-product-name="Skimmed Milk" data-tag="Milks" data-image="assets/images/products/product4.png" data-fat="0.5% Max" data-snf="8.7% Min" data-shelf="48 Hours" data-temp="4°C &plusmn; 0.5°C" data-desc="Virtually fat-free milk retaining all essential proteins and calcium without lipids.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product4.png" alt="Skimmed Milk" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Milks</span>
-                            <h4 class="card-name">Skimmed Milk</h4>
-                            <div class="card-quick-specs">Fat: 0.5% Max | SNF: 8.7%</div>
+                        <div class="datasheet-right-col">
+                            <div class="datasheet-meta">
+                                <span class="datasheet-tag" id="showcase-tag">Milks</span>
+                                <h3 class="datasheet-title" id="showcase-title">Full Cream Milk</h3>
+                                <p class="datasheet-desc" id="showcase-desc">Rich and creamy pasteurized milk, perfect for traditional desserts, thick curds, and daily household nutrition.</p>
+                            </div>
+                            
+                            <div class="datasheet-spec-table">
+                                <h4 class="datasheet-table-header">LABORATORY ANALYSIS &amp; CRITICAL PARAMETERS</h4>
+                                <div class="datasheet-grid-specs">
+                                    <div class="datasheet-spec-box">
+                                        <span class="datasheet-lbl">FAT CONTENT</span>
+                                        <span class="datasheet-val" id="showcase-fat">6.0% Min</span>
+                                    </div>
+                                    <div class="datasheet-spec-box">
+                                        <span class="datasheet-lbl">SNF RATIO</span>
+                                        <span class="datasheet-val" id="showcase-snf">9.0% Min</span>
+                                    </div>
+                                    <div class="datasheet-spec-box">
+                                        <span class="datasheet-lbl">SHELF LIFE</span>
+                                        <span class="datasheet-val" id="showcase-shelf">48 Hours</span>
+                                    </div>
+                                    <div class="datasheet-spec-box">
+                                        <span class="datasheet-lbl">STORAGE TEMP</span>
+                                        <span class="datasheet-val" id="showcase-temp">4°C &plusmn; 0.5°C</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="datasheet-actions">
+                                <a href="#contact" class="btn btn-primary btn-block btn-lg btn-magnetic" id="showcase-inquire-btn">
+                                    <span class="magnetic-text">Inquire Bulk Ordering</span>
+                                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Card 5 -->
-                    <div class="product-master-card" data-index="4" data-product-name="Curd" data-tag="Fermented" data-image="assets/images/products/product5.png" data-fat="3.0% Min" data-snf="8.5% Min" data-shelf="15 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Thick, set probiotic curd prepared under automated, sanitarily controlled fermentation loops.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product5.png" alt="Curd" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Fermented</span>
-                            <h4 class="card-name">Curd</h4>
-                            <div class="card-quick-specs">Probiotic | Thick Set</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 -->
-                    <div class="product-master-card" data-index="5" data-product-name="Yogurt" data-tag="Fermented" data-image="assets/images/products/product6.png" data-fat="1.5% Min" data-snf="9.0% Min" data-shelf="20 Days" data-temp="4°C &plusmn; 0.5°C" data-desc="Aseptic flavored fruit yogurt loaded with active cultures to support digestive immunity.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product6.png" alt="Yogurt" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Fermented</span>
-                            <h4 class="card-name">Yogurt</h4>
-                            <div class="card-quick-specs">Active Cultures | Smooth</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 7 -->
-                    <div class="product-master-card" data-index="6" data-product-name="Paneer" data-tag="Cheese" data-image="assets/images/products/product7.png" data-fat="50% Dry Matter" data-snf="N/A" data-shelf="30 Days" data-temp="-18°C &plusmn; 1°C" data-desc="Soft, high-protein fresh cottage cheese blocks vacuum-packed in sterile environments.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product7.png" alt="Paneer" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Cheese</span>
-                            <h4 class="card-name">Paneer</h4>
-                            <div class="card-quick-specs">High Protein | Vacuum Pack</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 8 -->
-                    <div class="product-master-card" data-index="7" data-product-name="Butter" data-tag="Fats" data-image="assets/images/products/product8.png" data-fat="80% Min" data-snf="1.5% Max" data-shelf="12 Months" data-temp="-18°C &plusmn; 1°C" data-desc="Rich butter churned continuously from fresh pasteurized dairy cream, yielding excellent structure.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product8.png" alt="Butter" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Fats</span>
-                            <h4 class="card-name">Butter</h4>
-                            <div class="card-quick-specs">Fat: 80% | Rich Churned</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 9 -->
-                    <div class="product-master-card" data-index="8" data-product-name="Cheese" data-tag="Cheese" data-image="assets/images/products/product9.png" data-fat="26.0%" data-snf="N/A" data-shelf="9 Months" data-temp="4°C &plusmn; 0.5°C" data-desc="Processed cheddar cheese slices and blocks, exhibiting uniform melting performance.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product9.png" alt="Cheese" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Cheese</span>
-                            <h4 class="card-name">Cheese</h4>
-                            <div class="card-quick-specs">Cheddar Blend | Uniform Melt</div>
-                        </div>
-                    </div>
-
-                    <!-- Card 10 -->
-                    <div class="product-master-card" data-index="9" data-product-name="Ghee" data-tag="Fats" data-image="assets/images/products/product10.png" data-fat="99.7% Min" data-snf="0.3% Max" data-shelf="12 Months" data-temp="Ambient" data-desc="Premium granular ghee clarified traditionally, generating a rich aromatic profile.">
-                        <div class="card-thumb-container">
-                            <img src="assets/images/products/product10.png" alt="Ghee" class="card-thumb">
-                        </div>
-                        <div class="card-info">
-                            <span class="card-tag">Fats</span>
-                            <h4 class="card-name">Ghee</h4>
-                            <div class="card-quick-specs">Fat: 99.7% | Pure Granular</div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -691,9 +722,9 @@
                     </div>
                 </div>
                 <!-- Item 4 -->
-                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1590233649088-e81e4b87d5ba?auto=format&fit=crop&w=1200&q=80" data-caption="Massive insulated raw-milk storage silos maintaining temperatures below 4°C.">
+                <div class="gallery-item scroll-reveal-up" data-category="processing" data-src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80" data-caption="Massive insulated raw-milk storage silos maintaining temperatures below 4°C.">
                     <div class="gallery-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1590233649088-e81e4b87d5ba?auto=format&fit=crop&w=600&q=80" alt="Massive Milk Silos" class="gallery-img">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" alt="Massive Milk Silos" class="gallery-img">
                         <div class="gallery-hover-overlay">
                             <span class="gallery-item-tag">Processing</span>
                             <span class="gallery-item-title">Insulated Silos</span>
@@ -913,6 +944,9 @@
         </div>
     </div>
 
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Main Logic Script -->
     <script src="script.js"></script>
 </body>
