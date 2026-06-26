@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 1. STATE & RESOURCE PRELOADING CONFIG
     // ----------------------------------------------------------------------
-    const totalFrames = 240;
+    const totalFrames = 81;
     const images = [];
     let loadedResourcesCount = 0;
 
@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Preload scroll sequence canvas frames (00001.webp - 00240.webp)
         for (let i = 1; i <= totalFrames; i++) {
             const img = new Image();
-            const frameName = String(i).padStart(5, '0');
-            img.src = `assets/images/frames/${frameName}.webp`;
+            const frameName = String(i).padStart(3, '0');
+            img.src = `assets/images/new_frames/on-scrub-video_${frameName}.webp`;
             img.onload = onResourceLoaded;
             img.onerror = onResourceLoaded; // Fail-safe
             images.push(img);
