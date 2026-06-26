@@ -125,23 +125,56 @@ document.addEventListener('DOMContentLoaded', () => {
     initPreloading();
 
     // ----------------------------------------------------------------------
-    // 3. MOUSE GLOW ORB (SMOOTH INTERPOLATED TRACKING)
+    // 3. CUSTOM INTERACTIVE CURSOR & MOUSE GLOW ORB
     // ----------------------------------------------------------------------
+    const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('custom-cursor-dot');
     const glowOrb = document.getElementById('mouse-glow-orb');
+
     let mouseX = 0, mouseY = 0;
     let orbX = 0, orbY = 0;
 
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+
+        // Position the inner dot immediately
+        if (cursorDot) {
+            gsap.set(cursorDot, { x: mouseX, y: mouseY });
+        }
+
+        // Lag-follow the outer ring using GSAP
+        if (cursor) {
+            gsap.to(cursor, {
+                x: mouseX,
+                y: mouseY,
+                duration: 0.15,
+                ease: "power2.out",
+                overwrite: "auto"
+            });
+        }
     });
 
-    // Lerp (Linear Interpolation) loop for ultra-smooth orb tracking
+    // Add hover scale effect for interactive elements
+    const interactiveSelectors = 'a, button, .product-slider-card, .gallery-item, .step-dot, .filter-btn, input, textarea';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            if (cursor) cursor.classList.add('cursor-hover');
+            if (cursorDot) cursorDot.classList.add('cursor-hover');
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            if (cursor) cursor.classList.remove('cursor-hover');
+            if (cursorDot) cursorDot.classList.remove('cursor-hover');
+        }
+    });
+
+    // Lerp loop for the ambient light-mode background orb
     function updateOrbPosition() {
         const dx = mouseX - orbX;
         const dy = mouseY - orbY;
 
-        // Speed ratio (0.08 offers smooth fluid delay)
         orbX += dx * 0.08;
         orbY += dy * 0.08;
 
@@ -155,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(updateOrbPosition);
 
     // ----------------------------------------------------------------------
-    // 4. HERO SECTION 3D PARALLAX SHOWCASE
+    // 4. HERO SECTION 3D PARALLAX SHOWCASE & TILT PHYSICS
     // ----------------------------------------------------------------------
     const heroSection = document.getElementById('hero');
     const parallaxWrapper = document.getElementById('hero-parallax-wrapper');
@@ -164,25 +197,77 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroSection && parallaxWrapper && parallaxImg) {
         heroSection.addEventListener('mousemove', (e) => {
             const rect = heroSection.getBoundingClientRect();
-
-            // Normalize cursor position (-0.5 to 0.5)
             const xVal = (e.clientX - rect.left) / rect.width - 0.5;
             const yVal = (e.clientY - rect.top) / rect.height - 0.5;
 
-            // Calculate 3D tilt coordinates
-            const rotateX = -yVal * 25; // Max 12.5 deg tilt
-            const rotateY = xVal * 25;
-            const transX = xVal * 30;   // Max 15px translation
-            const transY = yVal * 30;
+            // Tilt the outer blueprint panel in 3D
+            gsap.to(parallaxWrapper, {
+                rotateX: -yVal * 28,
+                rotateY: xVal * 28,
+                x: xVal * 35,
+                y: yVal * 35,
+                transformPerspective: 1200,
+                duration: 0.4,
+                ease: "power2.out",
+                overwrite: "auto"
+            });
 
-            parallaxWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${transX}px, ${transY}px, 0)`;
-            parallaxImg.style.transform = `scale(1.03)`;
+            // Parallax the product image itself slightly slower for 3D depth separation
+            gsap.to(parallaxImg, {
+                scale: 1.06,
+                x: xVal * 15,
+                y: yVal * 15,
+                duration: 0.4,
+                overwrite: "auto"
+            });
         });
 
         heroSection.addEventListener('mouseleave', () => {
-            // Reset to identity
-            parallaxWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
-            parallaxImg.style.transform = 'scale(1)';
+            gsap.to(parallaxWrapper, {
+                rotateX: 0,
+                rotateY: 0,
+                x: 0,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                overwrite: "auto"
+            });
+            gsap.to(parallaxImg, {
+                scale: 1,
+                x: 0,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                overwrite: "auto"
+            });
+        });
+    }
+
+    // Generic 3D Tilt helper for interactive cards
+    function apply3DTilt(element, maxAngle = 15) {
+        element.addEventListener('mousemove', (e) => {
+            const rect = element.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            gsap.to(element, {
+                rotateX: -y * maxAngle,
+                rotateY: x * maxAngle,
+                transformPerspective: 1000,
+                duration: 0.3,
+                ease: "power2.out",
+                overwrite: "auto"
+            });
+        });
+
+        element.addEventListener('mouseleave', () => {
+            gsap.to(element, {
+                rotateX: 0,
+                rotateY: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                overwrite: "auto"
+            });
         });
     }
 
@@ -475,29 +560,62 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentIdx = 0;
         let isDragging = false;
         let startX = 0;
-        let scrollLeft = 0;
 
         function scrollToProduct(idx) {
-            currentIdx = idx;
+            // Circular rotation of card indices
+            currentIdx = (idx + cards.length) % cards.length;
 
             cards.forEach(c => c.classList.remove('active'));
             const activeCard = cards[currentIdx];
             activeCard.classList.add('active');
 
-            const viewportWidth = viewport.clientWidth;
-            const cardLeft = activeCard.offsetLeft;
-            const cardWidth = activeCard.clientWidth;
+            // Apply 3D Perspective Transformations
+            cards.forEach((card, i) => {
+                let diff = i - currentIdx;
 
-            let targetX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
+                // Handle boundary warping for smooth wrapping
+                if (diff > cards.length / 2) diff -= cards.length;
+                if (diff < -cards.length / 2) diff += cards.length;
 
-            const maxScroll = -(track.scrollWidth - viewportWidth);
-            if (targetX > 0) targetX = 0;
-            if (targetX < maxScroll) targetX = maxScroll;
+                const absDiff = Math.abs(diff);
 
-            gsap.to(track, {
-                x: targetX,
-                duration: 0.6,
-                ease: "power3.out"
+                if (absDiff > 3) {
+                    gsap.to(card, {
+                        opacity: 0,
+                        visibility: 'hidden',
+                        duration: 0.4,
+                        overwrite: "auto"
+                    });
+                    return;
+                }
+
+                // 3D positioning coordinates
+                const translateX = diff * 220;     // Separation
+                const translateZ = -absDiff * 160;  // Push back in depth
+                const rotateY = diff * -28;         // Fan rotation
+                const scale = 1 - absDiff * 0.12;   // Shrink
+                const opacity = 1 - absDiff * 0.45; // Fade
+
+                gsap.to(card, {
+                    display: 'block',
+                    visibility: 'visible',
+                    x: translateX,
+                    z: translateZ,
+                    rotationY: rotateY,
+                    scale: scale,
+                    opacity: opacity,
+                    zIndex: 100 - absDiff,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    overwrite: "auto"
+                });
+
+                // Disable interaction with non-focused cards to keep drag intuitive
+                if (i === currentIdx) {
+                    card.style.pointerEvents = 'auto';
+                } else {
+                    card.style.pointerEvents = 'none';
+                }
             });
 
             updateProductDatasheet(activeCard);
@@ -505,128 +623,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
-                if (currentIdx > 0) {
-                    scrollToProduct(currentIdx - 1);
-                } else {
-                    scrollToProduct(cards.length - 1);
-                }
+                scrollToProduct(currentIdx - 1);
             });
         }
 
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
-                if (currentIdx < cards.length - 1) {
-                    scrollToProduct(currentIdx + 1);
-                } else {
-                    scrollToProduct(0);
-                }
+                scrollToProduct(currentIdx + 1);
             });
         }
 
         cards.forEach((card, idx) => {
-            card.addEventListener('click', () => {
-                scrollToProduct(idx);
+            card.addEventListener('click', (e) => {
+                if (idx !== currentIdx) {
+                    e.preventDefault();
+                    scrollToProduct(idx);
+                }
             });
-            card.addEventListener('mouseenter', () => {
-                scrollToProduct(idx);
-            });
+            // Apply 3D card tilt physics on hover/mouse move
+            apply3DTilt(card, 15);
         });
 
-        // Drag scroll support
+        // Swipe & Drag physics
         viewport.addEventListener('mousedown', (e) => {
             isDragging = true;
-            startX = e.pageX - track.offsetLeft;
-            scrollLeft = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
+            startX = e.pageX;
             viewport.style.cursor = 'grabbing';
         });
 
-        viewport.addEventListener('mouseleave', () => {
-            if (isDragging) {
-                isDragging = false;
-                viewport.style.cursor = 'grab';
-            }
-        });
-
-        viewport.addEventListener('mouseup', () => {
-            if (isDragging) {
-                isDragging = false;
-                viewport.style.cursor = 'grab';
-
-                let nearestIdx = 0;
-                let minDiff = Infinity;
-                const trackX = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
-
-                cards.forEach((card, idx) => {
-                    const viewportWidth = viewport.clientWidth;
-                    const cardLeft = card.offsetLeft;
-                    const cardWidth = card.clientWidth;
-                    const idealX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
-                    const diff = Math.abs(trackX - idealX);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        nearestIdx = idx;
-                    }
-                });
-                scrollToProduct(nearestIdx);
-            }
-        });
-
-        viewport.addEventListener('mousemove', (e) => {
+        window.addEventListener('mouseup', (e) => {
             if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            let targetX = scrollLeft + walk;
+            isDragging = false;
+            viewport.style.cursor = 'grab';
 
-            const maxScroll = -(track.scrollWidth - viewport.clientWidth);
-            if (targetX > 0) targetX = 0;
-            if (targetX < maxScroll) targetX = maxScroll;
-
-            gsap.set(track, { x: targetX });
+            const deltaX = e.pageX - startX;
+            if (deltaX > 60) {
+                scrollToProduct(currentIdx - 1);
+            } else if (deltaX < -60) {
+                scrollToProduct(currentIdx + 1);
+            }
         });
 
-        // Touch support
         let touchStartX = 0;
         viewport.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
-            scrollLeft = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
         }, { passive: true });
 
-        viewport.addEventListener('touchmove', (e) => {
-            const touchX = e.touches[0].clientX;
-            const diffX = touchX - touchStartX;
-            let targetX = scrollLeft + diffX;
+        viewport.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaX = touchEndX - touchStartX;
 
-            const maxScroll = -(track.scrollWidth - viewport.clientWidth);
-            if (targetX > 0) targetX = 0;
-            if (targetX < maxScroll) targetX = maxScroll;
-
-            gsap.set(track, { x: targetX });
-        }, { passive: true });
-
-        viewport.addEventListener('touchend', () => {
-            let nearestIdx = 0;
-            let minDiff = Infinity;
-            const trackX = track.style.transform ? parseFloat(track.style.transform.replace(/[^\d.-]/g, '')) || 0 : 0;
-
-            cards.forEach((card, idx) => {
-                const viewportWidth = viewport.clientWidth;
-                const cardLeft = card.offsetLeft;
-                const cardWidth = card.clientWidth;
-                const idealX = -(cardLeft - (viewportWidth / 2) + (cardWidth / 2));
-                const diff = Math.abs(trackX - idealX);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    nearestIdx = idx;
-                }
-            });
-            scrollToProduct(nearestIdx);
+            if (deltaX > 50) {
+                scrollToProduct(currentIdx - 1);
+            } else if (deltaX < -50) {
+                scrollToProduct(currentIdx + 1);
+            }
         }, { passive: true });
 
         // Center card 0 initially
-        setTimeout(() => {
-            scrollToProduct(0);
-        }, 100);
+        scrollToProduct(0);
     }
 
     // ----------------------------------------------------------------------
@@ -701,6 +756,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 11. COUNTER ANIMATION FOR STATS CARDS
     // ----------------------------------------------------------------------
+    // ----------------------------------------------------------------------
+    // 11. COUNTER ANIMATION FOR STATS CARDS
+    // ----------------------------------------------------------------------
     function initStatsCounters() {
         const statsSection = document.getElementById('about');
         if (!statsSection) return;
@@ -710,15 +768,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ScrollTrigger.create({
             trigger: statsSection,
-            start: "top 75%",
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
             onEnter: () => {
                 counters.forEach(counter => {
                     const target = parseInt(counter.getAttribute('data-target'));
                     const obj = { val: 0 };
                     gsap.to(obj, {
                         val: target,
-                        duration: 2.0,
+                        duration: 1.8,
                         ease: "power3.out",
+                        overwrite: "auto",
                         onUpdate: () => {
                             counter.textContent = Math.floor(obj.val).toLocaleString();
                         }
@@ -729,16 +789,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     const targetWidth = fill.style.width || "0%";
                     gsap.fromTo(fill,
                         { width: "0%" },
-                        { width: targetWidth, duration: 1.5, ease: "power3.out" }
+                        { width: targetWidth, duration: 1.5, ease: "power3.out", overwrite: "auto" }
                     );
                 });
             },
-            once: true
+            onLeaveBack: () => {
+                // Reset to 0 when scrolled past upwards
+                counters.forEach(counter => {
+                    counter.textContent = "0";
+                });
+                fills.forEach(fill => {
+                    gsap.set(fill, { width: "0%" });
+                });
+            }
         });
     }
 
     // ----------------------------------------------------------------------
-    // 12. GSAP SCROLLTRIGGER FOR SCROLL REVEALS
+    // 12. GSAP SCROLLTRIGGER FOR CINEMATIC SCROLL REVEALS
     // ----------------------------------------------------------------------
     function initScrollReveals() {
         const revealElements = document.querySelectorAll('.scroll-reveal-up, .scroll-reveal-left, .scroll-reveal-right');
@@ -747,22 +815,33 @@ document.addEventListener('DOMContentLoaded', () => {
             let xOffset = 0;
             let yOffset = 0;
 
-            if (el.classList.contains('scroll-reveal-up')) yOffset = 40;
-            if (el.classList.contains('scroll-reveal-left')) xOffset = -40;
-            if (el.classList.contains('scroll-reveal-right')) xOffset = 40;
+            if (el.classList.contains('scroll-reveal-up')) yOffset = 60;
+            if (el.classList.contains('scroll-reveal-left')) xOffset = -60;
+            if (el.classList.contains('scroll-reveal-right')) xOffset = 60;
 
             gsap.fromTo(el,
-                { opacity: 0, x: xOffset, y: yOffset },
+                { 
+                    opacity: 0, 
+                    x: xOffset, 
+                    y: yOffset,
+                    scale: 0.94,
+                    filter: "blur(8px)"
+                },
                 {
                     opacity: 1,
                     x: 0,
                     y: 0,
-                    duration: 1.0,
-                    ease: "expo.out",
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 1.4,
+                    delay: 0.15, // Cinematic delay feel
+                    ease: "power4.out",
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
+                        start: "top 92%",
+                        end: "bottom 8%",
+                        toggleActions: "play reverse play reverse",
+                        overwrite: "auto"
                     }
                 }
             );
